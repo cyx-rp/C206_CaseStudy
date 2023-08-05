@@ -32,5 +32,5 @@ public class ServiceProviders {
 	public void setPrice(double providerPricing) {
 		this.providerPricing=providerPricing;
 	}
-	//
+	///
 }
