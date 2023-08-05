@@ -3,9 +3,9 @@ public class Service {
 private String id;
 private String description;
 private double price;
-public Service(String string, String description, double price) {
+public Service(String id, String description, double price) {
 	super();
-	this.id = string;
+	this.id = id;
 	this.description = description;
 	this.price = price;
 }

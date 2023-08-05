@@ -1,122 +1,111 @@
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class C206_CaseStudy {
+
 	public static void main(String[] args) {
-;
+
 		ArrayList<Service> serviceList = new ArrayList<Service>();
 		
 
-		serviceList.add(new Service("SV001", "Bathroom Renovation",35.00));
-		serviceList.add(new Service("SV002","Green Home Improvements",19.90));
-
-
-		int option = 0;
-
-		while (option != 7) {
-
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
-			if (option==1) {
-				
-			}
-			else if (option==2) {
-				
-			}
-			else if (option==3) {
-				servicemenu(serviceList);
-				
-			}
-			else if (option==4) {
-				
-			}
-			else if(option==5) {
-				
-			}
-			else if(option==6) {
-				
-			}
-			else if (option == 7) {
-				System.out.println("Bye!");
-			} else {
-				System.out.println("Invalid option");
-			}
-		}
-
-	}
-
-	private static void menu() {
-		// TODO Auto-generated method stub
-		C206_CaseStudy.setHeader("Renovation Portal");
-		System.out.println("1. Users");
-		System.out.println("2. Service Providers");
-		System.out.println("3. Services");
-		System.out.println("4. Quotes");
-		System.out.println("5. Requests");
-		System.out.println("6. Appointments");
-		System.out.println("7. Quit");
-		Helper.line(80, "-");
+		serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
+		serviceList.add(new Service("SV002", "Attic Conversion", 10));
 		
-	}
-	private static void setHeader(String header) {
-		// TODO Auto-generated method stub
-		Helper.line(80, "-");
-		System.out.println(header);
-		Helper.line(80, "-");
-		
-	}
 
-	private static void servicemenu(ArrayList<Service> serviceList) {
-		//modify this to fit your code.
-		C206_CaseStudy.setHeader("Renovation Portal");
-		System.out.println("1. View all services");
-		System.out.println("2. Add a service");
-		System.out.println("3. Delete a Services");
-		System.out.println("4. Back");
-		Helper.line(80, "-");
 		int option = 0;
 
 		while (option != 4) {
 
-			boolean exit=false;
+			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
-				ViewAllServices(serviceList);
+				// View all items
+				C206_CaseStudy.setHeader("VIEW");			
+				C206_CaseStudy.setHeader("ITEM TYPES");
+				System.out.println("1. Users");
+				System.out.println("2. Service Providers");
+				System.out.println("3. Services");
+				System.out.println("4. Quotes");
+				System.out.println("5. Requests");
+				System.out.println("6. Appointments");
+				
+				int itemType = Helper.readInt("Enter option to select what you want to view > ");
+				if (itemType==3)
+				C206_CaseStudy.viewAllServices(serviceList);
 
 			} else if (option == 2) {
-
-				addService(serviceList);
-
-			} else if (option == 3) {
-				// Delete Service
+				// Add a new item
+				C206_CaseStudy.setHeader("ADD");			
+				C206_CaseStudy.setHeader("ITEM TYPES");
+				System.out.println("1. Users");
+				System.out.println("2. Service Providers");
+				System.out.println("3. Services");
+				System.out.println("4. Quotes");
+				System.out.println("5. Requests");
+				System.out.println("6. Appointments");
 				
-				deleteService(serviceList);
-				/*int itemType = Helper.readInt("Enter option to select item type > ");
+				
+				int itemType = Helper.readInt("Enter option to select item type > ");
 
-				if (itemType == 1) {
-					// Loan camcorder
-					ResourceCentre.loanCamcorder(camcorderList);
-				} else if (itemType == 2) {
-					// Loan Chromebook
-					ResourceCentre.loanChromebook(chromebookList);
+				if (itemType == 3) {
+					// Add a service
+					Service sv = inputService();
+					C206_CaseStudy.addService(serviceList, sv);
+					System.out.println("Service added");
+
 				} else {
 					System.out.println("Invalid type");
-				}*/
-
-			} else if (option == 4) {
-				exit=true;
-				break;
-				} else {
-					System.out.println("Invalid option");
 				}
 
+			} else if (option == 3) {
+				// Loan item
+				C206_CaseStudy.setHeader("DELETE");			
+				C206_CaseStudy.setHeader("ITEM TYPES");
+				System.out.println("1. Users");
+				System.out.println("2. Service Providers");
+				System.out.println("3. Services");
+				System.out.println("4. Quotes");
+				System.out.println("5. Requests");
+				System.out.println("6. Appointments");
+				
+				int itemType = Helper.readInt("Enter option to select item type > ");
+
+				if (itemType == 3) {
+					// Delete Service
+					C206_CaseStudy.deleteService(serviceList);
+				} else {
+					System.out.println("Invalid type");
+				}
+			} else if (option == 4) {
+				System.out.println("Bye!");
+			} else {
+				System.out.println("Invalid option");
+			}}
+
+		}
+
+	
+
+	public static void menu() {
+		C206_CaseStudy.setHeader("Renovation Portal");
+		System.out.println("1. View All");
+		System.out.println("2. Add");
+		System.out.println("3. Delete");
+		System.out.println("5. Quit");
+		Helper.line(80, "-");
+
+	}
+	
+	public static void setHeader(String header) {
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
 	}
 
-}
 
-	public static String retrieveAllServices(ArrayList<Service> serviceList) {
+
+	//================================= Option 1 View items (CRUD- Read) =================================
+	public static String retrieveAllService(ArrayList<Service> serviceList) {
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
@@ -129,42 +118,69 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static void ViewAllServices(ArrayList<Service> serviceList) {
-C206_CaseStudy.setHeader("Service LIST");
+	public static void viewAllServices(ArrayList<Service> serviceList) {
+		C206_CaseStudy.setHeader("SERVICE LIST");
 		String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION",
-"Price");
-		 output += retrieveAllServices(serviceList);	
-		System.out.println(output);}
-	public static Service inputService(ArrayList<Service> serviceList) {
-		String id = Helper.readString("Enter id > ");
-		String description = Helper.readString("Enter description > ");
-		double price = Helper.readDouble("Enter price > ");
+				"PRICE");
+		 output += retrieveAllService(serviceList);	
+		System.out.println(output);
+	}
 
-		Service service= new Service(id, description, price);
-		return service;
+
+	//================================= Option 2 Add an item (CRUD - Create) =================================
+	public static Service inputService() {
+		String id = Helper.readString("Enter asset id > ");
+		String description = Helper.readString("Enter description > ");
+		int price = Helper.readInt("Enter price > ");
+
+		Service sv= new Service(id, description, price);
+		return sv;
 		
 	}
-	public static void addService(ArrayList<Service> serviceList, Service service) {
+	public static void addService(ArrayList<Service> serviceList, Service sv) {
 		Service item;
 		for(int i = 0; i < serviceList.size(); i++) {
 			item = serviceList.get(i);
-			if (item.getId().equalsIgnoreCase(service.getId()) )
+			if (item.getId().equalsIgnoreCase(sv.getId()) )
 				return;
 		}
-		if ((service.getId().isEmpty()) || (service.getDescription().isEmpty()) ) {
+		if ((sv.getId().isEmpty()) || (sv.getDescription().isEmpty()) ) {
 			return;
 		}
 		
-		serviceList.add(service);
+		serviceList.add(sv);
 	}
-	public static void deleteService(ArrayList<Service> serviceList) {
-		String idtoremove = Helper.readString("Enter the id of the service to delete >");
-		(int i = 0; i < serviceList.size(); i++) {
-			if (serviceList.get(i).getId()==idtoremove) {
-				serviceList.remove(i);
-			}
-				return;
-		}
+	
+	
+	//================================= Option 3 Loan an item (CRUD - Update) =================================
+	private static void deleteService(ArrayList<Service> serviceList) {
+	    // TODO Auto-generated method stub
+	    String IdDelete = Helper.readString("Enter id of service to be deleted > ");
+	    for (int i = 0; i < serviceList.size(); i++) {
+	        Service item;
+	        item = serviceList.get(i);
+	        if (item.getId().equalsIgnoreCase(IdDelete)) {
+	            serviceList.remove(item);
+	            return;
+	        }
+	    }
+	}
+	
+
+
+
+
+
+		
+	
+		
 		
 	}
-	}
+
+	
+	
+
+	
+	
+
+
