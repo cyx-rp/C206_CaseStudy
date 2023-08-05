@@ -30,8 +30,8 @@ public class C206_CaseStudy {
 				System.out.println("6. Appointments");
 				
 				int itemType = Helper.readInt("Enter option to select what you want to view > ");
-				if (itemType==3)
-				C206_CaseStudy.viewAllServices(serviceList);
+				if (itemType==3) {
+				C206_CaseStudy.viewAllServices(serviceList);}
 
 			} else if (option == 2) {
 				// Add a new item
