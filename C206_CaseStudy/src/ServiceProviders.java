@@ -1,14 +1,15 @@
 
+
 public class ServiceProviders {
 	
 	private String providerId;
-	private String providerDescription;
+	private String providerName;
 	private double providerPricing;
 	
-	public ServiceProviders(String providerId, String providerDescription, double providerPricing) {
+	public ServiceProviders(String providerId, String providerName, double providerPricing) {
 		super();
 		this.providerId=providerId;
-		this.providerDescription=providerDescription;
+		this.providerName=providerName;
 		this.providerPricing=providerPricing;
 	}
 	
@@ -19,11 +20,11 @@ public class ServiceProviders {
 		this.providerId=providerId;
 	}
 	
-	public String getDescription() {
-		return providerDescription;
+	public String getName() {
+		return providerName;
 	}
-	public void setDescription(String providerDescription) {
-		this.providerDescription=providerDescription;
+	public void setName(String providerName) {
+		this.providerName=providerName;
 	}
 	
 	public double getPrice() {
@@ -34,3 +35,5 @@ public class ServiceProviders {
 	}
 	///
 }
+
+
