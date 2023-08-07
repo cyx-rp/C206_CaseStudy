@@ -6,8 +6,8 @@ public class C206_CaseStudy {
 
         ArrayList<Service> serviceList = new ArrayList<Service>();
 
-        serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
-        serviceList.add(new Service("SV002", "Attic Conversion", 10));
+        serviceList.add(new Service("SV001", "Bathroom Renovation", 35.00));
+        serviceList.add(new Service("SV002", "Attic Conversion", 10.00));
 
         int option = 0;
 
@@ -103,7 +103,7 @@ public class C206_CaseStudy {
 
         for (int i = 0; i < serviceList.size(); i++) {
             if (serviceList.get(i) != null) {
-                output += String.format("%-10s %-30s %-20d\n", serviceList.get(i).getId(),
+                output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
                         serviceList.get(i).getDescription(),
                         serviceList.get(i).getPrice());
             }
@@ -114,15 +114,20 @@ public class C206_CaseStudy {
     public static void viewAllServices(ArrayList<Service> serviceList) {
         C206_CaseStudy.setHeader("SERVICE LIST");
         String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION", "PRICE");
-        output += retrieveAllService(serviceList);
-        System.out.println(output);
+        String AllServices= retrieveAllService(serviceList);
+        if (AllServices.isEmpty()) {
+            System.out.println("No services found.");
+        } else {
+            output += AllServices;
+            System.out.println(output);
+        }
     }
 
     //================================= Option 2 Add an item (CRUD - Create) =================================
     public static Service inputService() {
         String id = Helper.readString("Enter asset id > ");
         String description = Helper.readString("Enter description > ");
-        int price = Helper.readInt("Enter price > ");
+        double price = Helper.readDouble("Enter price > ");
 
         Service sv = new Service(id, description, price);
         return sv;
@@ -145,16 +150,20 @@ public class C206_CaseStudy {
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
     public static void deleteService(ArrayList<Service> serviceList) {
         String IdDelete = Helper.readString("Enter id of service to be deleted > ");
+        boolean serviceFound = false;
         for (int i = 0; i < serviceList.size(); i++) {
             Service item;
             item = serviceList.get(i);
+            serviceFound=true;
             if (item.getId().equals(IdDelete)) { // Updated to use equals() for case-sensitive comparison
                 serviceList.remove(item);
                 System.out.println("Service deleted");
                 return;
             }
         }
-        System.out.println("Service not found");
+        if (!serviceFound) {
+            System.out.println("Service not found");
+        }
     }
 }
 

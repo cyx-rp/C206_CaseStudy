@@ -19,8 +19,8 @@ public C206_CaseStudyTest() {
 
 	@Before
 	public void setUp() throws Exception {
-		SV1=new Service("SV001", "Bathroom Renovation", 35);
-		SV2=new Service("SV002", "Attic Conversion", 10);
+		SV1=new Service("SV001", "Bathroom Renovation", 35.00);
+		SV2=new Service("SV002", "Attic Conversion", 10.00);
 		
 		serviceList = new ArrayList<Service>();
 	}
@@ -45,14 +45,19 @@ public C206_CaseStudyTest() {
 		//Add another item. test The size of the list is 2? -normal
 		//The item just added is as same as the second item of the list
 		C206_CaseStudy.addService(serviceList, SV2);
-		assertEquals("Check that Camcorder arraylist size is 2", 2, serviceList.size());
-		assertSame("Check that Camcorder is added", SV2, serviceList.get(1));
+		assertEquals("Check that Service arraylist size is 2", 2, serviceList.size());
+		assertSame("Check that Servuce is added", SV2, serviceList.get(1));
+		
+		//Prevent duplicates in the list-Error
+		Service duplicateService = new Service("SV001", "Duplicate Service", 50.00);
+	    C206_CaseStudy.addService(serviceList, duplicateService);
+	    assertEquals("Check that Service arraylist size is still 2 after adding a duplicate service", 2, serviceList.size());
 	}
 
 	@Test
 	public void testRetrieveAllService() {
 		// Test if Service list is not null but empty -boundary
-		assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", serviceList);
+		assertNotNull("Test if there is valid Service arraylist to retrieve item", serviceList);
 		
 		//test if the list of services retrieved from the SourceCentre is empty - boundary
 		String allServices= C206_CaseStudy.retrieveAllService(serviceList);
@@ -62,12 +67,16 @@ public C206_CaseStudyTest() {
 		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
 		   C206_CaseStudy.addService(serviceList, SV1);
 	       C206_CaseStudy.addService(serviceList, SV2);
-		assertEquals("Test that Camcorder arraylist size is 2", 2, serviceList.size());
+		assertEquals("Test that service arraylist size is 2", 2, serviceList.size());
 		
 		//test if the expected output string same as the list of services retrieved from the SourceCentre	
 		allServices= C206_CaseStudy.retrieveAllService(serviceList);
-		testOutput = String.format("%-10s %-30s %-20s\n", "SV001", "Bathroom Renovation", "35");
-		testOutput += String.format("%-10s %-30s %-20s\n","SV002", "Attic Conversion", "10");
+		testOutput = String.format("%-10s %-30s %-20s\n", "SV001", "Bathroom Renovation", "35.00");
+		testOutput += String.format("%-10s %-30s %-20s\n","SV002", "Attic Conversion","10.00");
+		// Ensure that retrieveAllService() returns an empty string for an empty list-Error
+	    serviceList.clear();
+	    allServices = C206_CaseStudy.retrieveAllService(serviceList);
+	    assertEquals("Check that ViewAllServicelist is empty for an empty list", "", allServices);
 	
 		assertEquals("Test that ViewAllServices", testOutput, allServices);
 		
@@ -89,9 +98,16 @@ public C206_CaseStudyTest() {
 		//Delete other item. test The size of the list is 0 -normal
 	    C206_CaseStudy.deleteService(serviceList);
 	    assertEquals("Test that Service arraylist size is 0 after deleting all services", 0, serviceList.size());
-		
+	    assertFalse("Check that deleted service does not exist", serviceList.contains(SV2));
+	    
 	    //Test deleting from empty list-Boundary
 	    C206_CaseStudy.deleteService(serviceList);
 	    assertEquals("Check that the Service arraylist remains empty after deleting from an empty list", 0, serviceList.size());
+	
+	 //Test Error Deleting a non-existing service should not cause any changes in the list
+	    Service SV3 = new Service("SV003", "Non-Existing Service", 75.00);
+	    C206_CaseStudy.deleteService(serviceList, SV3);
+	    assertEquals("Test that Service arraylist size remains 2 after attempting to delete a non-existing service",
+	            2, serviceList.size());
 	}
 }
