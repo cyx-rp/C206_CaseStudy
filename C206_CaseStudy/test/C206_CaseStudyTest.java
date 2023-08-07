@@ -29,6 +29,9 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
+	public void testViewServiceProvider() {
+		
+	}
 
 	@After
 	public void tearDown() throws Exception {
