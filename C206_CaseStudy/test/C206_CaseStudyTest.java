@@ -51,7 +51,7 @@ public C206_CaseStudyTest() {
 
 	@Test
 	public void testRetrieveAllService() {
-		// Test if Item list is not null but empty -boundary
+		// Test if Service list is not null but empty -boundary
 		assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", serviceList);
 		
 		//test if the list of services retrieved from the SourceCentre is empty - boundary
