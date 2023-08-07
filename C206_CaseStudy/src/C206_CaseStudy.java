@@ -143,7 +143,7 @@ public class C206_CaseStudy {
     }
 
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
-    private static void deleteService(ArrayList<Service> serviceList) {
+    public static void deleteService(ArrayList<Service> serviceList) {
         String IdDelete = Helper.readString("Enter id of service to be deleted > ");
         for (int i = 0; i < serviceList.size(); i++) {
             Service item;
