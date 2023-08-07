@@ -72,24 +72,26 @@ public C206_CaseStudyTest() {
 		assertEquals("Test that ViewAllServices", testOutput, allServices);
 		
 	}
-	 @Test
-	    public void testDeleteService() {
-	        // Add some services to the list
-	        serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
-	        serviceList.add(new Service("SV002", "Attic Conversion", 10));
-	        
-	        // Test deleting an existing service
-	        C206_CaseStudy.deleteService(serviceList);
-	        
-	        // Test that the service with ID "SV001" is removed from the list
-	        boolean serviceExists = false;
-	        for (Service service : serviceList) {
-	            if (service.getId().equals("SV001")) {
-	                serviceExists = true;
-	                break;
-	            }
-	        }
-	        assertFalse(serviceExists);
-	    }
-	
+	@Test
+	public void testDeleteService() {
+		// Item list is not null, so that can delete a new item - boundary
+		assertNotNull("Check if there is valid Service arraylist to delete from", serviceList);
+		//Given list of 2 items, after adding, it has a length of 2:
+		//The item just added is as same as the first item of the list
+		C206_CaseStudy.addService(serviceList, SV1);
+		C206_CaseStudy.addService(serviceList, SV2);
+		assertEquals("Check that Service arraylist size is 2", 2, serviceList.size());
+		//Delete the first item and check the size of the list - normal
+		C206_CaseStudy.deleteService(serviceList);
+	    assertEquals("Test that Service arraylist size is 1 after deleting one service", 1, serviceList.size());
+	    assertFalse("Check that deleted service does not exist", serviceList.contains(SV1));
+		
+		//Delete other item. test The size of the list is 0 -normal
+	    C206_CaseStudy.deleteService(serviceList);
+	    assertEquals("Test that Service arraylist size is 0 after deleting all services", 0, serviceList.size());
+		
+	    //Test deleting from empty list-Boundary
+	    C206_CaseStudy.deleteService(serviceList);
+	    assertEquals("Check that the Service arraylist remains empty after deleting from an empty list", 0, serviceList.size());
+	}
 }
