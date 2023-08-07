@@ -27,6 +27,8 @@ public class C206_CaseStudyTest {
 	public void testAddServiceProvider() {
 		
 	}
+	
+	@Test
 
 	@After
 	public void tearDown() throws Exception {
