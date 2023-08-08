@@ -154,10 +154,10 @@ public class C206_CaseStudy {
         for (int i = 0; i < serviceList.size(); i++) {
             Service item;
             item = serviceList.get(i);
-            serviceFound=true;
             if (item.getId().equals(IdDelete)) { // Updated to use equals() for case-sensitive comparison
                 serviceList.remove(item);
                 System.out.println("Service deleted");
+                serviceFound=true;
                 return;
             }
         }
