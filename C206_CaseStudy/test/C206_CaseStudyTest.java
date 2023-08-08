@@ -106,7 +106,8 @@ public C206_CaseStudyTest() {
 	
 	 //Test Error Deleting a non-existing service should not cause any changes in the list
 	    Service SV3 = new Service("SV003", "Non-Existing Service", 75.00);
-	    C206_CaseStudy.deleteService(serviceList, SV3);
+	    C206_CaseStudy.addService(serviceList, SV3);
+	    C206_CaseStudy.deleteService(serviceList);
 	    assertEquals("Test that Service arraylist size remains 2 after attempting to delete a non-existing service",
 	            2, serviceList.size());
 	}
