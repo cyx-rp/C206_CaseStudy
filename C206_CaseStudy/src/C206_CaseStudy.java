@@ -70,7 +70,8 @@ public class C206_CaseStudy {
 
                 if (itemType == 3) {
                     // Delete Service
-                    C206_CaseStudy.deleteService(serviceList);
+                	String selectedID=Helper.readString("Enter ID of service to delete:");
+                    C206_CaseStudy.deleteService(serviceList,selectedID);
                 } else {
                     System.out.println("Invalid type");
                 }
@@ -148,21 +149,13 @@ public class C206_CaseStudy {
     }
 
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
-    public static void deleteService(ArrayList<Service> serviceList) {
-        String IdDelete = Helper.readString("Enter id of service to be deleted > ");
-        boolean serviceFound = false;
+    public static void deleteService(ArrayList<Service> serviceList, String serviceId) {
         for (int i = 0; i < serviceList.size(); i++) {
-            Service item;
-            item = serviceList.get(i);
-            if (item.getId().equals(IdDelete)) { // Updated to use equals() for case-sensitive comparison
-                serviceList.remove(item);
-                System.out.println("Service deleted");
-                serviceFound=true;
+            Service service = serviceList.get(i);
+            if (service.getId().equals(serviceId)) {
+                serviceList.remove(i);
                 return;
             }
-        }
-        if (!serviceFound) {
-            System.out.println("Service not found");
         }
     }
 }
