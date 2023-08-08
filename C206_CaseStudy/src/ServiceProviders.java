@@ -5,12 +5,14 @@ public class ServiceProviders {
 	private String providerId;
 	private String providerName;
 	private double providerPricing;
+	private boolean isAvailable;
 	
 	public ServiceProviders(String providerId, String providerName, double providerPricing) {
 		super();
 		this.providerId=providerId;
 		this.providerName=providerName;
 		this.providerPricing=providerPricing;
+		this.isAvailable = true;
 	}
 	
 	public String getId() {
@@ -32,6 +34,14 @@ public class ServiceProviders {
 	}
 	public void setPrice(double providerPricing) {
 		this.providerPricing=providerPricing;
+	}
+	
+	public boolean getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 	///
 }

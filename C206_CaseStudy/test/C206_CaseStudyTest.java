@@ -25,14 +25,79 @@ public class C206_CaseStudyTest {
 	
 	@Test
 	public void testAddServiceProvider() {
-		
+		//Test Case 1
+		// Service Providers list is not null and it is empty
+				assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
+				assertEquals("Test that the Service Providers arraylist is currently empty.", 0, serviceProvidersList.size());
+				//Given an empty list, after adding 1 item, the size of the list is 1
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);		
+				assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+				
+				//Test Case 2
+				// Add a Service provider
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp2);
+				assertEquals("Test that the Service Providers arraylist size is now 2.", 2, serviceProvidersList.size());
+				//The item just added is as same as the last item in the list
+				assertSame("Test that Service Provider is added to the end of the list.", sp2, serviceProvidersList.get(1));
+				
+				//Test Case 3
+				// Add a service provider that already exists in the list
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp2);
+				assertEquals("Test that the Service Provider arraylist size is unchanged.", 2, serviceProvidersList.size());
+				
+				//Test Case 4
+				// Add a service provider that has missing details
+				ServiceProviders cc_missing = new ServiceProviders("SP005", "", 60);
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, cc_missing);
+				assertEquals("Test that the Service Provider arraylist size is unchanged.", 2, serviceProvidersList.size());
 	}
 	
 	@Test
 	public void testViewServiceProvider() {
-		
+		//Test Case 1
+				// Test if Item list is not null and empty
+				assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
+				assertEquals("Test that the Service Providers arraylist is empty.", 0, serviceProvidersList.size());
+				// Attempt to retrieve the Service Providers 
+				String allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
+				String testOutput = ""; 
+				// Test if the output is empty
+				assertEquals("Test that nothing is displayed", testOutput, allProviders);
+
+				//Test Case 2
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp2);
+				// Test that the list is not empty
+				assertEquals("Test that Service Providers arraylist size is 2.", 2, serviceProvidersList.size());
+				// Attempt to retrieve the Service Providers 
+				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
+				testOutput = String.format("%-10s %-30s %-20s\n","SP001", "Aces Renovate", 40);
+				testOutput += String.format("%-10s %-30s %-20s\n","SP002", "Stellar Services", 20);
+				// Test that the details are displayed correctly
+				assertEquals("Test that the display is correct.", testOutput, allProviders);
+
+				//Test Case 3
+				sp3.setIsAvailable(false);
+				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp3);
+				assertEquals("Test that Camcorder arraylist size is 2.", 3, serviceProvidersList.size());
+				assertFalse("Test that the last item in the arraylist is not available", serviceProvidersList.get(2).getIsAvailable());
+				// Attempt to retrieve the Service Providers 
+				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
+				testOutput = String.format("%-10s %-30s %-20s\n","SP001", "Aces Renovate", 40);
+				testOutput += String.format("%-10s %-30s %-20s\n","SP002", "Stellar Services", 20);
+				// Test that the details are displayed correctly
+				assertEquals("Test that the display is correct.", testOutput, allProviders);
 	}
-//
+	
+	@Test
+	public void testDeleteServiceProvider() {
+		//Test Case 1
+		assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
+		assertEquals("Test that the Service Providers arraylist is empty.", 0, serviceProvidersList.size());
+	    
+	}
+	
+	
 	@After
 	public void tearDown() throws Exception {
 	}
