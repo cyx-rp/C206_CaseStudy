@@ -3,13 +3,18 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	public static void main(String[] args) {
-
-		ArrayList<Service> serviceList = new ArrayList<Service>();
 		
+		//List of users
+		ArrayList<User> userList = new ArrayList<User>();
+		
+		//List of services 
+		ArrayList<Service> serviceList = new ArrayList<Service>();
 
 		serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
 		serviceList.add(new Service("SV002", "Attic Conversion", 10));
 		
+		
+		//List of service providers
 		ArrayList<ServiceProviders> serviceProvidersList = new ArrayList<ServiceProviders>();
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
@@ -128,9 +133,8 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-
-
-
+	
+	
 	//================================= Option 1 View items (CRUD- Read) =================================
 	public static String retrieveAllService(ArrayList<Service> serviceList) {
 		String output = "";
@@ -173,6 +177,20 @@ public class C206_CaseStudy {
 
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
+	public static User inputUser() { //add user
+		// write your code here
+		String username = Helper.readString("Enter a username >");
+		String password = Helper.readString("Enter a password >");
+		String email = Helper.readString("Enter your email >");
+		int contact = Helper.readInt("Enter your contact number >");
+		String address = Helper.readString("Enter your address >");
+
+		User newUser = new User(username, password, email, contact, address);
+		
+		return newUser;
+		
+	}
+	
 	public static Service inputService() {
 		String id = Helper.readString("Enter asset id > ");
 		String description = Helper.readString("Enter description > ");
