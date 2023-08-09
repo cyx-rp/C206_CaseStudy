@@ -7,6 +7,7 @@ public class C206_CaseStudy {
 		//List of users
 		ArrayList<User> userList = new ArrayList<User>();
 		
+		
 		//List of services 
 		ArrayList<Service> serviceList = new ArrayList<Service>();
 
@@ -178,6 +179,7 @@ public class C206_CaseStudy {
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
 	public static User inputUser() { //add user
+		
 		// write your code here
 		String username = Helper.readString("Enter a username >");
 		String password = Helper.readString("Enter a password >");
@@ -189,6 +191,19 @@ public class C206_CaseStudy {
 		
 		return newUser;
 		
+	}
+	
+	public static void addUser(ArrayList<User> userList, User newUser) {
+		// write your code here
+		User account;
+
+		for(int i = 0; i < userList.size(); i++) {
+			account = userList.get(i);
+			
+			if ((newUser.getUsername().isEmpty()) || (newUser.getUsername().isEmpty()) ) {
+				userList.add(newUser);
+			}
+		}
 	}
 	
 	public static Service inputService() {

@@ -16,9 +16,10 @@ public class User {
 		this.email = email;
 		this.contact = contact;
 		this.address = address;
+		
 	}
 	
-	//Getters
+	//Getters	
 	public String getUsername() {
 		return username;
 	}
