@@ -251,7 +251,7 @@ public class C206_CaseStudy {
 	    }
 	}
 	
-	private static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList) {
+	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList) {
 		String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
 		for (int x = serviceProvidersList.size() - 1; x >= 0; x--) {
 	        ServiceProviders provider = serviceProvidersList.get(x);
