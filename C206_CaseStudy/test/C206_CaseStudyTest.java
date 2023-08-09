@@ -71,8 +71,8 @@ public class C206_CaseStudyTest {
 				assertEquals("Test that Service Providers arraylist size is 2.", 2, serviceProvidersList.size());
 				// Attempt to retrieve the Service Providers 
 				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
-				testOutput = String.format("%-10s %-30s %-20s\n","SP001", "Aces Renovate", 40);
-				testOutput += String.format("%-10s %-30s %-20s\n","SP002", "Stellar Services", 20);
+				testOutput = String.format("%-10s %-30s %-20f\n","SP001", "Aces Renovation", 80.00);
+				testOutput += String.format("%-10s %-30s %-20f\n","SP002", "Stellar Services", 90.00);
 				// Test that the details are displayed correctly
 				assertEquals("Test that the display is correct.", testOutput, allProviders);
 
@@ -83,8 +83,9 @@ public class C206_CaseStudyTest {
 				assertFalse("Test that the last item in the arraylist is not available", serviceProvidersList.get(2).getIsAvailable());
 				// Attempt to retrieve the Service Providers 
 				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
-				testOutput = String.format("%-10s %-30s %-20s\n","SP001", "Aces Renovate", 40);
-				testOutput += String.format("%-10s %-30s %-20s\n","SP002", "Stellar Services", 20);
+				testOutput = String.format("%-10s %-30s %-20f\n","SP001", "Aces Renovation", 80.00);
+				testOutput += String.format("%-10s %-30s %-20f\n","SP002", "Stellar Services", 90.00);
+				testOutput += String.format("%-10s %-30s %-20f\n","SP003", "Tucker's", 50.00);
 				// Test that the details are displayed correctly
 				assertEquals("Test that the display is correct.", testOutput, allProviders);
 	}
