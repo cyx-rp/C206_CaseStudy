@@ -36,11 +36,9 @@ public C206_CaseStudyTest() {
 	    public void testRetrieveAllService() {
 	        // Test if Service list is not null but empty - boundary
 	        assertNotNull("Test if there is valid Service arraylist to retrieve item", serviceList);
-
-	        // Test if the list of services retrieved from the SourceCentre is empty - boundary
 	        String allServices = C206_CaseStudy.retrieveAllService(serviceList);
 	        String testOutput = "";
-	        assertEquals("Check that ViewAllServicelist", testOutput, allServices);
+	        assertEquals("Check that serviceList is empty", testOutput, allServices);
 
 	        // Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
 	        C206_CaseStudy.addService(serviceList, SV1);

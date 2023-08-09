@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
-        ArrayList<Service> serviceList = new ArrayList<Service>();
+        final ArrayList<Service> serviceList = new ArrayList<Service>();
 
         serviceList.add(new Service("SV001", "Bathroom Renovation", 35.00));
         serviceList.add(new Service("SV002", "Attic Conversion", 10.00));
@@ -27,7 +27,7 @@ public class C206_CaseStudy {
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
 
-                int itemType = Helper.readInt("Enter option to select what you want to view > ");
+                final int itemType = Helper.readInt("Enter option to select what you want to view > ");
                 if (itemType == 3) {
                     C206_CaseStudy.viewAllServices(serviceList);
                 }
@@ -43,11 +43,11 @@ public class C206_CaseStudy {
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
 
-                int itemType = Helper.readInt("Enter option to select item type > ");
+                final int itemType = Helper.readInt("Enter option to select item type > ");
 
                 if (itemType == 3) {
                     // Add a service
-                    Service sv = inputService();
+                    final Service sv = inputService();
                     C206_CaseStudy.addService(serviceList, sv);
                     System.out.println("Service added");
 
@@ -66,11 +66,11 @@ public class C206_CaseStudy {
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
 
-                int itemType = Helper.readInt("Enter option to select item type > ");
+                final int itemType = Helper.readInt("Enter option to select item type > ");
 
                 if (itemType == 3) {
                     // Delete Service
-                	String selectedID=Helper.readString("Enter ID of service to delete:");
+                	final String selectedID=Helper.readString("Enter ID of service to delete:");
                     C206_CaseStudy.deleteService(serviceList,selectedID);
                 } else {
                     System.out.println("Invalid type");
@@ -92,7 +92,7 @@ public class C206_CaseStudy {
         Helper.line(80, "-");
     }
 
-    public static void setHeader(String header) {
+    public static void setHeader(final String header) {
         Helper.line(80, "-");
         System.out.println(header);
         Helper.line(80, "-");
@@ -101,7 +101,7 @@ public class C206_CaseStudy {
 
 
     //================================= Option 1 View items (CRUD- Read) =================================
-    public static String retrieveAllService(ArrayList<Service> serviceList) {
+    public static String retrieveAllService(final ArrayList<Service> serviceList) {
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
@@ -113,7 +113,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static void viewAllServices(ArrayList<Service> serviceList) {
+	public static void viewAllServices(final ArrayList<Service> serviceList) {
 		C206_CaseStudy.setHeader("Service LIST");
 		String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION",
 				"PRICE");
@@ -125,15 +125,15 @@ public class C206_CaseStudy {
 
     //================================= Option 2 Add an item (CRUD - Create) =================================
     public static Service inputService() {
-        String id = Helper.readString("Enter asset id > ");
-        String description = Helper.readString("Enter description > ");
-        double price = Helper.readDouble("Enter price > ");
+        final String id = Helper.readString("Enter asset id > ");
+        final String description = Helper.readString("Enter description > ");
+        final double price = Helper.readDouble("Enter price > ");
 
-        Service sv = new Service(id, description, price);
+        final Service sv = new Service(id, description, price);
         return sv;
     }
 
-    public static void addService(ArrayList<Service> serviceList, Service sv) {
+    public static void addService(final ArrayList<Service> serviceList, final Service sv) {
         Service item;
         for (int i = 0; i < serviceList.size(); i++) {
             item = serviceList.get(i);
@@ -148,9 +148,9 @@ public class C206_CaseStudy {
     }
 
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
-    public static void deleteService(ArrayList<Service> serviceList, String serviceId) {
+    public static void deleteService(final ArrayList<Service> serviceList, final String serviceId) {
         for (int i = 0; i < serviceList.size(); i++) {
-            Service service = serviceList.get(i);
+            final Service service = serviceList.get(i);
             if (service.getId().equals(serviceId)) {
                 serviceList.remove(i);
                 return;
