@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -95,6 +96,18 @@ public class C206_CaseStudyTest {
 		//Test Case 1
 		assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
 		assertEquals("Test that the Service Providers arraylist is empty.", 0, serviceProvidersList.size());
+		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
+		assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+		// Attempt to delete the existing service provider
+		C206_CaseStudy.deleteProvider(serviceProvidersList);
+		// Verify that the service provider is removed and appropriate message is shown
+		assertEquals("Test that the Service Providers arraylist size is now 0.", 0, serviceProvidersList.size());
+		
+		//Test Case 2
+		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
+	    assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+
+	    // Attempt to delete a non-existing service provider
 	    
 	}
 	
