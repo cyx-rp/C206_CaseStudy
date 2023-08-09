@@ -98,31 +98,30 @@ public class C206_CaseStudy {
         Helper.line(80, "-");
     }
 
+
+
     //================================= Option 1 View items (CRUD- Read) =================================
     public static String retrieveAllService(ArrayList<Service> serviceList) {
-        String output = "";
+		String output = "";
 
-        for (int i = 0; i < serviceList.size(); i++) {
-            if (serviceList.get(i) != null) {
-                output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
-                        serviceList.get(i).getDescription(),
-                        serviceList.get(i).getPrice());
-            }
-        }
-        return output;
-    }
+		for (int i = 0; i < serviceList.size(); i++) {
 
-    public static void viewAllServices(ArrayList<Service> serviceList) {
-        C206_CaseStudy.setHeader("SERVICE LIST");
-        String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION", "PRICE");
-        String AllServices= retrieveAllService(serviceList);
-        if (AllServices.isEmpty()) {
-            System.out.println("No services found.");
-        } else {
-            output += AllServices;
-            System.out.println(output);
-        }
-    }
+			output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
+					serviceList.get(i).getDescription(), 
+					serviceList.get(i).getPrice());
+		}
+		return output;
+	}
+	
+	public static void viewAllServices(ArrayList<Service> serviceList) {
+		C206_CaseStudy.setHeader("Service LIST");
+		String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION",
+				"PRICE");
+		 output += retrieveAllService(serviceList);	
+		System.out.println(output);
+	}
+
+
 
     //================================= Option 2 Add an item (CRUD - Create) =================================
     public static Service inputService() {
