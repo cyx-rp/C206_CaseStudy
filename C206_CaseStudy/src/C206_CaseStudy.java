@@ -183,7 +183,7 @@ public class C206_CaseStudy {
         }
     }
 
-<<<<<<< HEAD
+
     public static void menu() {
         C206_CaseStudy.setHeader("Renovation Portal");
         System.out.println("1. View All");
@@ -206,7 +206,6 @@ public class C206_CaseStudy {
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
 	public static String retrieveAllService(ArrayList<Service> serviceList) {
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
