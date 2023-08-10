@@ -111,8 +111,6 @@ public class C206_CaseStudy {
 					C206_CaseStudy.addService(serviceList, sv);
 					System.out.println("Service added");
 
-                final int itemType = Helper.readInt("Enter option to select item type > ");
-
                 if (itemType == 3) {
                     // Add a service
                     final Service sv = inputService();
@@ -278,19 +276,11 @@ public class C206_CaseStudy {
 		String id = Helper.readString("Enter asset id > ");
 		String description = Helper.readString("Enter description > ");
 		int price = Helper.readInt("Enter price > ");
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
-
-<<<<<<< HEAD
-    //================================= Option 2 Add an item (CRUD - Create) =================================
-    public static Service inputService() {
-        final String id = Helper.readString("Enter asset id > ");
-        final String description = Helper.readString("Enter description > ");
-        final double price = Helper.readDouble("Enter price > ");
-=======
 		Service sv= new Service(id, description, price);
-		return sv;
-		
-	}
+		return sv;}
+
+    //================================= Option 2 Add an item (CRUD - Create) =================================
+    
 	public static void addService(ArrayList<Service> serviceList, Service sv) {
 		Service item;
 		for(int i = 0; i < serviceList.size(); i++) {
