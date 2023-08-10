@@ -68,10 +68,6 @@ public class C206_CaseStudy {
 					
 				}
 
-                final int itemType = Helper.readInt("Enter option to select what you want to view > ");
-                if (itemType == 3) {
-                    C206_CaseStudy.viewAllServices(serviceList);
-                }
 
 			} else if (option == 2) {
 				// Add a new item
@@ -105,17 +101,14 @@ public class C206_CaseStudy {
                 System.out.println("4. Quotes");
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
+                int itemType = Helper.readInt("Enter option to select item type > ");
 				else if (itemType == 3) {
 					// Add a service
 					Service sv = inputService();
 					C206_CaseStudy.addService(serviceList, sv);
 					System.out.println("Service added");
 
-                if (itemType == 3) {
-                    // Add a service
-                    final Service sv = inputService();
-                    C206_CaseStudy.addService(serviceList, sv);
-                    System.out.println("Service added");
+                
 			} else if (option == 3) {
 				// Loan item
 				C206_CaseStudy.setHeader("DELETE");			
