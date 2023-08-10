@@ -134,7 +134,8 @@ public class C206_CaseStudy {
 					
 				}
 				else if (itemType == 2) {
-					C206_CaseStudy.deleteProvider(serviceProvidersList);
+					String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
+					C206_CaseStudy.deleteProvider(serviceProvidersList, delete);
 				}
 
                 } else {
@@ -342,8 +343,7 @@ public class C206_CaseStudy {
 	    }
 	}
 	
-	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList) {
-		String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
+	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList, String delete) {
 		for (int x = serviceProvidersList.size() - 1; x >= 0; x--) {
 	        ServiceProviders provider = serviceProvidersList.get(x);
 	        if (provider.getId().equalsIgnoreCase(delete)) {

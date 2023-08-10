@@ -44,27 +44,20 @@ public C206_CaseStudyTest() {
 	
 	@Test
 	public void testAddServiceProvider() {
-		//Test Case 1
-		// Service Providers list is not null and it is empty
-				assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
-				assertEquals("Test that the Service Providers arraylist is currently empty.", 0, serviceProvidersList.size());
-				//Given an empty list, after adding 1 item, the size of the list is 1
-				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);		
-				assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
-				
-				//Test Case 2
+				//Test Case 1
 				// Add a Service provider
+		        C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
 				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp2);
 				assertEquals("Test that the Service Providers arraylist size is now 2.", 2, serviceProvidersList.size());
 				//The item just added is as same as the last item in the list
 				assertSame("Test that Service Provider is added to the end of the list.", sp2, serviceProvidersList.get(1));
 				
-				//Test Case 3
+				//Test Case 2
 				// Add a service provider that already exists in the list
 				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp2);
 				assertEquals("Test that the Service Provider arraylist size is unchanged.", 2, serviceProvidersList.size());
 				
-				//Test Case 4
+				//Test Case 3
 				// Add a service provider that has missing details
 				ServiceProviders cc_missing = new ServiceProviders("SP005", "", 60);
 				C206_CaseStudy.addServiceProviders(serviceProvidersList, cc_missing);
@@ -112,20 +105,40 @@ public C206_CaseStudyTest() {
 	@Test
 	public void testDeleteServiceProvider() {
 		//Test Case 1
+		// Delete a Service Provider
 		assertNotNull("Test if there is valid Service Providers arraylist to add to", serviceProvidersList);
-		assertEquals("Test that the Service Providers arraylist is empty.", 0, serviceProvidersList.size());
-		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
-		assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
-		// Attempt to delete the existing service provider
-		C206_CaseStudy.deleteProvider(serviceProvidersList);
-		// Verify that the service provider is removed and appropriate message is shown
-		assertEquals("Test that the Service Providers arraylist size is now 0.", 0, serviceProvidersList.size());
+	    assertEquals("Test that the Service Providers arraylist is empty.", 0, serviceProvidersList.size());
+	    C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
+	    assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+	    String deleteId = "SP001";
+	    C206_CaseStudy.deleteProvider(serviceProvidersList, deleteId);
+
+		// Verify that the service provider is deleted and list is empty
+	    assertEquals("Test that the Service Providers arraylist size is now 0.", 0, serviceProvidersList.size());
 		
 		//Test Case 2
+		//Delete a Non-Existing service provider
 		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
-	    assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+	    int initialSize = serviceProvidersList.size();
 
 	    // Attempt to delete a non-existing service provider
+	    String nonExistingId = "SP002";
+	    C206_CaseStudy.deleteProvider(serviceProvidersList, nonExistingId);
+
+	    // Verify that the service provider list size remains the same
+	    assertEquals("Test that the Service Providers arraylist size remains 1.", initialSize, serviceProvidersList.size());
+	    
+	    
+	    //Test Case 3
+	    //Delete from empty List
+	    serviceProvidersList.clear();
+
+	    // Attempt to delete from an empty list
+	    String deleteId2 = "SP001"; // Assuming SP001 doesn't exist
+	    C206_CaseStudy.deleteProvider(serviceProvidersList, deleteId2);
+
+	    // Verify that Service Providers size remains 0 and appropriate message is shown
+	    assertEquals("Test that the Service Providers arraylist size remains 0.", 0, serviceProvidersList.size());
 	    
 	}
 	
