@@ -94,9 +94,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.addServiceProviders(serviceProvidersList, sp);
 					System.out.println("The Service Provider has been added Successfully!");
 				}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
             } else if (option == 2) {
                 // Add a new item
                 C206_CaseStudy.setHeader("ADD");
@@ -107,23 +105,19 @@ public class C206_CaseStudy {
                 System.out.println("4. Quotes");
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
-=======
 				else if (itemType == 3) {
 					// Add a service
 					Service sv = inputService();
 					C206_CaseStudy.addService(serviceList, sv);
 					System.out.println("Service added");
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
                 final int itemType = Helper.readInt("Enter option to select item type > ");
 
-<<<<<<< HEAD
                 if (itemType == 3) {
                     // Add a service
                     final Service sv = inputService();
                     C206_CaseStudy.addService(serviceList, sv);
                     System.out.println("Service added");
-=======
 			} else if (option == 3) {
 				// Loan item
 				C206_CaseStudy.setHeader("DELETE");			
