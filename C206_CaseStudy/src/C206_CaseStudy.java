@@ -289,7 +289,8 @@ public class C206_CaseStudy {
 
 <<<<<<< HEAD
     //================================= Option 2 Add an item (CRUD - Create) =================================
-    public static Service inputService() {
+    
+public static Service inputService() {
         final String id = Helper.readString("Enter asset id > ");
         final String description = Helper.readString("Enter description > ");
         final double price = Helper.readDouble("Enter price > ");
@@ -347,6 +348,17 @@ public class C206_CaseStudy {
 	            return;
 	        }
 	    }
+	}
+public static void deleteUser(ArrayList<User> userList) {
+		
+		String deleteUser = Helper.readString("Enter the username of the account you want to delete >");
+		
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getUsername().equalsIgnoreCase(deleteUser)) {
+				userList.remove(i);
+			}
+		}
+		
 	}
 	
 	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList, String delete) {
