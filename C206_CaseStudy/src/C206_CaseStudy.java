@@ -11,9 +11,6 @@ public class C206_CaseStudy {
 		//List of services 
 		ArrayList<Service> serviceList = new ArrayList<Service>();
 
-        serviceList.add(new Service("SV001", "Bathroom Renovation", 35.00));
-        serviceList.add(new Service("SV002", "Attic Conversion", 10.00));
-
 		serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
 		serviceList.add(new Service("SV002", "Attic Conversion", 10));
 		
@@ -22,6 +19,7 @@ public class C206_CaseStudy {
 		ArrayList<ServiceProviders> serviceProvidersList = new ArrayList<ServiceProviders>();
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
+<<<<<<< HEAD
 
 		int option = 0;
 while (option != 4) {
@@ -50,7 +48,41 @@ while (option != 4) {
 			
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
+=======
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
+<<<<<<< HEAD
+=======
+		int option = 0;
+
+		while (option != 4) {
+			
+			C206_CaseStudy.login();
+			option = Helper.readInt("Enter an option > ");
+			
+			if (option == 1) {
+				
+			}
+			
+			else if (option == 2) {
+				
+			}
+			
+			else if (option == 3){
+				
+			}
+			
+			else if (option == 4){
+				System.out.println("Bye!");
+			}
+			else {
+				System.out.println("Invalid option");
+			}
+			
+			C206_CaseStudy.menu();
+			option = Helper.readInt("Enter an option > ");
+
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 			if (option == 1) {
 				// View all items
 				C206_CaseStudy.setHeader("VIEW");			
@@ -140,6 +172,7 @@ while (option != 4) {
 			}}
 
 		}
+<<<<<<< HEAD
     
     public static void login() {
 		C206_CaseStudy.setHeader("Renovation Portal");
@@ -148,31 +181,41 @@ while (option != 4) {
 		System.out.println("3. Delete");
 		System.out.println("4. Quit");
 		Helper.line(80, "-");
+=======
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
+<<<<<<< HEAD
+=======
+	public static void login() {
+		C206_CaseStudy.setHeader("Renovation Portal");
+		System.out.println("1. User");
+		System.out.println("2. Service Provider");
+		System.out.println("3. Delete");
+		System.out.println("4. Quit");
+		Helper.line(80, "-");
+
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 	}
 
+	public static void menu() {
+		C206_CaseStudy.setHeader("Renovation Portal");
+		System.out.println("1. View All");
+		System.out.println("2. Add");
+		System.out.println("3. Delete");
+		System.out.println("5. Quit");
+		Helper.line(80, "-");
 
-    public static void menu() {
-        C206_CaseStudy.setHeader("Renovation Portal");
-        System.out.println("1. View All");
-        System.out.println("2. Add");
-        System.out.println("3. Delete");
-        System.out.println("4. Quit");
-        Helper.line(80, "-");
-    }
-
-    public static void setHeader(final String header) {
-        Helper.line(80, "-");
-        System.out.println(header);
-        Helper.line(80, "-");
-    }
-
-
-
-  
+	}
+	
+	public static void setHeader(String header) {
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
+<<<<<<< HEAD
 	
 public static void viewAllUsers(ArrayList<User> userList) {
 		
@@ -184,19 +227,33 @@ public static void viewAllUsers(ArrayList<User> userList) {
 		
 	}
 public static String retrieveAllService(ArrayList<Service> serviceList) {
+=======
+	public static void viewAllUsers(ArrayList<User> userList) {
+		
+		for (int i = 0; i < userList.size(); i++) {
+			String listOfUsers = String.format("%-10s %-30s %-20d\n", "USERNAME");
+			System.out.println(userList.get(i).getUsername());
+			
+		}
+		
+	}
+	
+	public static String retrieveAllService(ArrayList<Service> serviceList) {
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
-
-			output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
+			if (serviceList.get(i)!=null) {
+				output += String.format("%-10s %-30s %-20d\n", serviceList.get(i).getId(),
 					serviceList.get(i).getDescription(), 
 					serviceList.get(i).getPrice());
+			}
 		}
 		return output;
 	}
 	
-	public static void viewAllServices(final ArrayList<Service> serviceList) {
-		C206_CaseStudy.setHeader("Service LIST");
+	public static void viewAllServices(ArrayList<Service> serviceList) {
+		C206_CaseStudy.setHeader("SERVICE LIST");
 		String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION",
 				"PRICE");
 		 output += retrieveAllService(serviceList);	
@@ -220,7 +277,6 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 		}
 		return output;
 	}
-
 
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
@@ -256,11 +312,11 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 		String id = Helper.readString("Enter asset id > ");
 		String description = Helper.readString("Enter description > ");
 		int price = Helper.readInt("Enter price > ");
-		Service sv= new Service(id, description, price);
-		return sv;}
 
-    //================================= Option 2 Add an item (CRUD - Create) =================================
-    
+		Service sv= new Service(id, description, price);
+		return sv;
+		
+	}
 	public static void addService(ArrayList<Service> serviceList, Service sv) {
 		Service item;
 		for(int i = 0; i < serviceList.size(); i++) {
@@ -298,8 +354,20 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 	}
 	
 	
-	//================================= Option 3 Loan an item (CRUD - Update) =================================
-	private static void deleteService(ArrayList<Service> serviceList) {
+	//================================= Option 3 Delete an item (CRUD - Delete) =================================
+	public static void deleteUser(ArrayList<User> userList) {
+		
+		String deleteUser = Helper.readString("Enter the username of the account you want to delete >");
+		
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getUsername().equalsIgnoreCase(deleteUser)) {
+				userList.remove(i);
+			}
+		}
+		
+	}
+	
+	public static void deleteService(ArrayList<Service> serviceList) {
 	    // TODO Auto-generated method stub
 	    String IdDelete = Helper.readString("Enter id of service to be deleted > ");
 	    for (int i = 0; i < serviceList.size(); i++) {
@@ -325,10 +393,25 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 	    System.out.println("Service provider with ID " + delete + " was not found.");
 	
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+
+<<<<<<< HEAD
  
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
 }
+=======
+
+
+
+		
+	
+		
+		
+	}
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
 	
 	
