@@ -23,7 +23,29 @@ public class C206_CaseStudy {
 		int option = 0;
 
 		while (option != 4) {
-
+			
+			C206_CaseStudy.login();
+			option = Helper.readInt("Enter an option > ");
+			
+			if (option == 1) {
+				
+			}
+			
+			else if (option == 2) {
+				
+			}
+			
+			else if (option == 3){
+				
+			}
+			
+			else if (option == 4){
+				System.out.println("Bye!");
+			}
+			else {
+				System.out.println("Invalid option");
+			}
+			
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
@@ -117,7 +139,15 @@ public class C206_CaseStudy {
 
 		}
 
-	
+	public static void login() {
+		C206_CaseStudy.setHeader("Renovation Portal");
+		System.out.println("1. User");
+		System.out.println("2. Service Provider");
+		System.out.println("3. Delete");
+		System.out.println("4. Quit");
+		Helper.line(80, "-");
+
+	}
 
 	public static void menu() {
 		C206_CaseStudy.setHeader("Renovation Portal");
@@ -137,6 +167,16 @@ public class C206_CaseStudy {
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
+	public static void viewAllUsers(ArrayList<User> userList) {
+		
+		for (int i = 0; i < userList.size(); i++) {
+			String listOfUsers = String.format("%-10s %-30s %-20d\n", "USERNAME");
+			System.out.println(userList.get(i).getUsername());
+			
+		}
+		
+	}
+	
 	public static String retrieveAllService(ArrayList<Service> serviceList) {
 		String output = "";
 
@@ -252,8 +292,20 @@ public class C206_CaseStudy {
 	}
 	
 	
-	//================================= Option 3 Loan an item (CRUD - Update) =================================
-	private static void deleteService(ArrayList<Service> serviceList) {
+	//================================= Option 3 Delete an item (CRUD - Delete) =================================
+	public static void deleteUser(ArrayList<User> userList) {
+		
+		String deleteUser = Helper.readString("Enter the username of the account you want to delete >");
+		
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getUsername().equalsIgnoreCase(deleteUser)) {
+				userList.remove(i);
+			}
+		}
+		
+	}
+	
+	public static void deleteService(ArrayList<Service> serviceList) {
 	    // TODO Auto-generated method stub
 	    String IdDelete = Helper.readString("Enter id of service to be deleted > ");
 	    for (int i = 0; i < serviceList.size(); i++) {
