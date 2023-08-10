@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-<<<<<<< HEAD
-   
-=======
 	public static void main(String[] args) {
 		
 		//List of users
@@ -13,12 +10,10 @@ public class C206_CaseStudy {
 		
 		//List of services 
 		ArrayList<Service> serviceList = new ArrayList<Service>();
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
         serviceList.add(new Service("SV001", "Bathroom Renovation", 35.00));
         serviceList.add(new Service("SV002", "Attic Conversion", 10.00));
-=======
+
 		serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
 		serviceList.add(new Service("SV002", "Attic Conversion", 10));
 		
@@ -27,7 +22,7 @@ public class C206_CaseStudy {
 		ArrayList<ServiceProviders> serviceProvidersList = new ArrayList<ServiceProviders>();
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+
 
         int option = 0;
 
@@ -36,7 +31,7 @@ public class C206_CaseStudy {
             C206_CaseStudy.menu();
             option = Helper.readInt("Enter an option > ");
 
-<<<<<<< HEAD
+
             if (option == 1) {
                 // View all items
                 C206_CaseStudy.setHeader("VIEW");
@@ -47,7 +42,7 @@ public class C206_CaseStudy {
                 System.out.println("4. Quotes");
                 System.out.println("5. Requests");
                 System.out.println("6. Appointments");
-=======
+
 			if (option == 1) {
 				// View all items
 				C206_CaseStudy.setHeader("VIEW");			
@@ -72,14 +67,12 @@ public class C206_CaseStudy {
 				}else if(itemType==5) {
 					
 				}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
                 final int itemType = Helper.readInt("Enter option to select what you want to view > ");
                 if (itemType == 3) {
                     C206_CaseStudy.viewAllServices(serviceList);
                 }
-=======
+
 			} else if (option == 2) {
 				// Add a new item
 				C206_CaseStudy.setHeader("ADD");			
@@ -149,13 +142,11 @@ public class C206_CaseStudy {
 				else if (itemType == 2) {
 					C206_CaseStudy.deleteProvider(serviceProvidersList);
 				}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
                 } else {
                     System.out.println("Invalid type");
                 }
-=======
+
 				else if (itemType == 3) {
 					// Delete Service
 					C206_CaseStudy.deleteService(serviceList);
@@ -167,7 +158,7 @@ public class C206_CaseStudy {
 			} else {
 				System.out.println("Invalid option");
 			}}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+
 
             } else if (option == 3) {
                 // Delete item
@@ -259,8 +250,7 @@ public class C206_CaseStudy {
 	}
 
 
-<<<<<<< HEAD
-=======
+
 	//================================= Option 2 Add an item (CRUD - Create) =================================
 	public static User inputUser() { //add user
 		
@@ -371,7 +361,6 @@ public class C206_CaseStudy {
 	    System.out.println("Service provider with ID " + delete + " was not found.");
 	
 	}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
         final Service sv = new Service(id, description, price);
         return sv;

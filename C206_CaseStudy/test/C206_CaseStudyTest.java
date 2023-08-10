@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class C206_CaseStudyTest {
-<<<<<<< HEAD
 	
 private ArrayList<Service> serviceList;
 private Service SV1;
@@ -21,29 +20,26 @@ private Service SV2;
 public C206_CaseStudyTest() {
 	super();
 }
-=======
+
 	private ServiceProviders sp1;
 	private ServiceProviders sp2;
 	private ServiceProviders sp3;
 	
 	private ArrayList<ServiceProviders> serviceProvidersList;
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
 	@Before
 	public void setUp() throws Exception {
-<<<<<<< HEAD
 		SV1=new Service("SV001", "Bathroom Renovation", 35.00);
 		SV2=new Service("SV002", "Attic Conversion", 10.00);
 		
 		serviceList = new ArrayList<Service>();
-=======
+
 		sp1 = new ServiceProviders("SP001","Aces Renovation",80);
 		sp2 = new ServiceProviders("SP002","Stellar Services",90);
 		sp3 = new ServiceProviders("SP003","Tucker's",50);
 		serviceProvidersList = new ArrayList<ServiceProviders>();
 		
 		
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 	}
 	
 	@Test
@@ -190,7 +186,6 @@ public C206_CaseStudyTest() {
 	
 
 	@Test
-<<<<<<< HEAD
 	public void testDeleteService() {
 	    // Item list is not null, so that can delete a new item - boundary
 	    assertNotNull("Check if there is valid Service arraylist to delete from", serviceList);
@@ -214,12 +209,6 @@ public C206_CaseStudyTest() {
 	    // Test deleting from an empty list - Boundary
 	    C206_CaseStudy.deleteService(serviceList,"");
 	    assertEquals("Check that the Service arraylist remains empty after deleting from an empty list", 0, serviceList.size());
-=======
-	
-	
-	
-	//Hello World!
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
 	    // Test error: Deleting a non-existing service should not cause any changes in the list
 	    Service SV3 = new Service("SV003", "Non-Existing Service", 75.00);
