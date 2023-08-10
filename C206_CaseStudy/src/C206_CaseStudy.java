@@ -23,25 +23,33 @@ public class C206_CaseStudy {
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
 
-
-        int option = 0;
-
-        while (option != 4) {
-
-            C206_CaseStudy.menu();
-            option = Helper.readInt("Enter an option > ");
-
-
-            if (option == 1) {
-                // View all items
-                C206_CaseStudy.setHeader("VIEW");
-                C206_CaseStudy.setHeader("ITEM TYPES");
-                System.out.println("1. Users");
-                System.out.println("2. Service Providers");
-                System.out.println("3. Services");
-                System.out.println("4. Quotes");
-                System.out.println("5. Requests");
-                System.out.println("6. Appointments");
+		int option = 0;
+while (option != 4) {
+			
+			C206_CaseStudy.login();
+			option = Helper.readInt("Enter an option > ");
+			
+			if (option == 1) {
+				
+			}
+			
+			else if (option == 2) {
+				
+			}
+			
+			else if (option == 3){
+				
+			}
+			
+			else if (option == 4){
+				System.out.println("Bye!");
+			}
+			else {
+				System.out.println("Invalid option");
+			}
+			
+			C206_CaseStudy.menu();
+			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
 				// View all items
@@ -68,7 +76,6 @@ public class C206_CaseStudy {
 					
 				}
 
-
 			} else if (option == 2) {
 				// Add a new item
 				C206_CaseStudy.setHeader("ADD");			
@@ -91,24 +98,16 @@ public class C206_CaseStudy {
 					System.out.println("The Service Provider has been added Successfully!");
 				}
 
-            } else if (option == 2) {
-                // Add a new item
-                C206_CaseStudy.setHeader("ADD");
-                C206_CaseStudy.setHeader("ITEM TYPES");
-                System.out.println("1. Users");
-                System.out.println("2. Service Providers");
-                System.out.println("3. Services");
-                System.out.println("4. Quotes");
-                System.out.println("5. Requests");
-                System.out.println("6. Appointments");
-                int itemType = Helper.readInt("Enter option to select item type > ");
 				else if (itemType == 3) {
 					// Add a service
 					Service sv = inputService();
 					C206_CaseStudy.addService(serviceList, sv);
 					System.out.println("Service added");
 
-                
+				} else {
+					System.out.println("Invalid type");
+				}
+
 			} else if (option == 3) {
 				// Loan item
 				C206_CaseStudy.setHeader("DELETE");			
@@ -125,13 +124,8 @@ public class C206_CaseStudy {
 					
 				}
 				else if (itemType == 2) {
-					String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
-					C206_CaseStudy.deleteProvider(serviceProvidersList, delete);
+					C206_CaseStudy.deleteProvider(serviceProvidersList);
 				}
-
-                } else {
-                    System.out.println("Invalid type");
-                }
 
 				else if (itemType == 3) {
 					// Delete Service
@@ -145,34 +139,17 @@ public class C206_CaseStudy {
 				System.out.println("Invalid option");
 			}}
 
+		}
+    
+    public static void login() {
+		C206_CaseStudy.setHeader("Renovation Portal");
+		System.out.println("1. User");
+		System.out.println("2. Service Provider");
+		System.out.println("3. Delete");
+		System.out.println("4. Quit");
+		Helper.line(80, "-");
 
-            } else if (option == 3) {
-                // Delete item
-                C206_CaseStudy.setHeader("DELETE");
-                C206_CaseStudy.setHeader("ITEM TYPES");
-                System.out.println("1. Users");
-                System.out.println("2. Service Providers");
-                System.out.println("3. Services");
-                System.out.println("4. Quotes");
-                System.out.println("5. Requests");
-                System.out.println("6. Appointments");
-
-                final int itemType = Helper.readInt("Enter option to select item type > ");
-
-                if (itemType == 3) {
-                    // Delete Service
-                	final String selectedID=Helper.readString("Enter ID of service to delete:");
-                    C206_CaseStudy.deleteService(serviceList,selectedID);
-                } else {
-                    System.out.println("Invalid type");
-                }
-            } else if (option == 4) {
-                System.out.println("Bye!");
-            } else {
-                System.out.println("Invalid option");
-            }
-        }
-    }
+	}
 
 
     public static void menu() {
@@ -196,7 +173,17 @@ public class C206_CaseStudy {
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
-	public static String retrieveAllService(ArrayList<Service> serviceList) {
+	
+public static void viewAllUsers(ArrayList<User> userList) {
+		
+		for (int i = 0; i < userList.size(); i++) {
+			String listOfUsers = String.format("%-10s %-30s %-20d\n", "USERNAME");
+			System.out.println(userList.get(i).getUsername());
+			
+		}
+		
+	}
+public static String retrieveAllService(ArrayList<Service> serviceList) {
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
@@ -325,7 +312,8 @@ public class C206_CaseStudy {
 	    }
 	}
 	
-	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList, String delete) {
+	public static void deleteProvider(ArrayList<ServiceProviders> serviceProvidersList) {
+		String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
 		for (int x = serviceProvidersList.size() - 1; x >= 0; x--) {
 	        ServiceProviders provider = serviceProvidersList.get(x);
 	        if (provider.getId().equalsIgnoreCase(delete)) {
@@ -338,22 +326,8 @@ public class C206_CaseStudy {
 	
 	}
 
-        final Service sv = new Service(id, description, price);
-        return sv;
-        
-    }
-
  
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
-    public static void deleteService(final ArrayList<Service> serviceList, final String serviceId) {
-        for (int i = 0; i < serviceList.size(); i++) {
-            final Service service = serviceList.get(i);
-            if (service.getId().equals(serviceId)) {
-                serviceList.remove(i);
-                return;
-            }
-        }
-    }
 }
 
 	
