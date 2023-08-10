@@ -26,28 +26,6 @@ while (option != 4) {
 			
 			C206_CaseStudy.login();
 			option = Helper.readInt("Enter an option > ");
-			
-			if (option == 1) {
-				
-			}
-			
-			else if (option == 2) {
-				
-			}
-			
-			else if (option == 3){
-				
-			}
-			
-			else if (option == 4){
-				System.out.println("Bye!");
-			}
-			else {
-				System.out.println("Invalid option");
-			}
-			
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
 
 		
 			
@@ -140,7 +118,7 @@ while (option != 4) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
-			}}}}
+			}}}
 
     
 
