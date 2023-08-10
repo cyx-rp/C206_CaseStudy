@@ -19,7 +19,7 @@ public class C206_CaseStudy {
 		ArrayList<ServiceProviders> serviceProvidersList = new ArrayList<ServiceProviders>();
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
-<<<<<<< HEAD
+
 
 		int option = 0;
 while (option != 4) {
@@ -48,41 +48,12 @@ while (option != 4) {
 			
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
-=======
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
-=======
-		int option = 0;
-
-		while (option != 4) {
-			
-			C206_CaseStudy.login();
-			option = Helper.readInt("Enter an option > ");
-			
-			if (option == 1) {
-				
-			}
-			
-			else if (option == 2) {
-				
-			}
-			
-			else if (option == 3){
-				
-			}
-			
-			else if (option == 4){
-				System.out.println("Bye!");
-			}
-			else {
-				System.out.println("Invalid option");
-			}
+		
 			
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 			if (option == 1) {
 				// View all items
 				C206_CaseStudy.setHeader("VIEW");			
@@ -169,23 +140,10 @@ while (option != 4) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
-			}}
+			}}}}
 
-		}
-<<<<<<< HEAD
     
-    public static void login() {
-		C206_CaseStudy.setHeader("Renovation Portal");
-		System.out.println("1. User");
-		System.out.println("2. Service Provider");
-		System.out.println("3. Delete");
-		System.out.println("4. Quit");
-		Helper.line(80, "-");
-=======
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-<<<<<<< HEAD
-=======
 	public static void login() {
 		C206_CaseStudy.setHeader("Renovation Portal");
 		System.out.println("1. User");
@@ -194,7 +152,7 @@ while (option != 4) {
 		System.out.println("4. Quit");
 		Helper.line(80, "-");
 
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+
 	}
 
 	public static void menu() {
@@ -215,19 +173,9 @@ while (option != 4) {
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
-<<<<<<< HEAD
+
 	
-public static void viewAllUsers(ArrayList<User> userList) {
-		
-		for (int i = 0; i < userList.size(); i++) {
-			String listOfUsers = String.format("%-10s %-30s %-20d\n", "USERNAME");
-			System.out.println(userList.get(i).getUsername());
-			
-		}
-		
-	}
-public static String retrieveAllService(ArrayList<Service> serviceList) {
-=======
+
 	public static void viewAllUsers(ArrayList<User> userList) {
 		
 		for (int i = 0; i < userList.size(); i++) {
@@ -239,8 +187,7 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 	}
 	
 	public static String retrieveAllService(ArrayList<Service> serviceList) {
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
-		String output = "";
+	String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
 			if (serviceList.get(i)!=null) {
@@ -392,17 +339,8 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 	    }
 	    System.out.println("Service provider with ID " + delete + " was not found.");
 	
-	}
-<<<<<<< HEAD
-=======
+	}}
 
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
-
-<<<<<<< HEAD
- 
-    //================================= Option 3 Delete an item (CRUD - Delete) =================================
-}
-=======
 
 
 
@@ -410,8 +348,7 @@ public static String retrieveAllService(ArrayList<Service> serviceList) {
 	
 		
 		
-	}
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+	
 
 	
 	
