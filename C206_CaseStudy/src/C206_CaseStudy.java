@@ -7,8 +7,12 @@ public class C206_CaseStudy {
 		//List of users
 		ArrayList<User> userList = new ArrayList<User>();
 		
+		
 		//List of services 
 		ArrayList<Service> serviceList = new ArrayList<Service>();
+
+        serviceList.add(new Service("SV001", "Bathroom Renovation", 35.00));
+        serviceList.add(new Service("SV002", "Attic Conversion", 10.00));
 
 		serviceList.add(new Service("SV001", "Bathroom Renovation", 35));
 		serviceList.add(new Service("SV002", "Attic Conversion", 10));
@@ -19,12 +23,25 @@ public class C206_CaseStudy {
 		serviceProvidersList.add(new ServiceProviders("SP001","Aces Renovate", 70));
 		serviceProvidersList.add(new ServiceProviders("SP002","Stellar Services", 50));
 
-		int option = 0;
 
-		while (option != 4) {
+        int option = 0;
 
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
+        while (option != 4) {
+
+            C206_CaseStudy.menu();
+            option = Helper.readInt("Enter an option > ");
+
+
+            if (option == 1) {
+                // View all items
+                C206_CaseStudy.setHeader("VIEW");
+                C206_CaseStudy.setHeader("ITEM TYPES");
+                System.out.println("1. Users");
+                System.out.println("2. Service Providers");
+                System.out.println("3. Services");
+                System.out.println("4. Quotes");
+                System.out.println("5. Requests");
+                System.out.println("6. Appointments");
 
 			if (option == 1) {
 				// View all items
@@ -51,6 +68,11 @@ public class C206_CaseStudy {
 					
 				}
 
+                final int itemType = Helper.readInt("Enter option to select what you want to view > ");
+                if (itemType == 3) {
+                    C206_CaseStudy.viewAllServices(serviceList);
+                }
+
 			} else if (option == 2) {
 				// Add a new item
 				C206_CaseStudy.setHeader("ADD");			
@@ -72,17 +94,36 @@ public class C206_CaseStudy {
 					C206_CaseStudy.addServiceProviders(serviceProvidersList, sp);
 					System.out.println("The Service Provider has been added Successfully!");
 				}
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
+<<<<<<< HEAD
+            } else if (option == 2) {
+                // Add a new item
+                C206_CaseStudy.setHeader("ADD");
+                C206_CaseStudy.setHeader("ITEM TYPES");
+                System.out.println("1. Users");
+                System.out.println("2. Service Providers");
+                System.out.println("3. Services");
+                System.out.println("4. Quotes");
+                System.out.println("5. Requests");
+                System.out.println("6. Appointments");
+=======
 				else if (itemType == 3) {
 					// Add a service
 					Service sv = inputService();
 					C206_CaseStudy.addService(serviceList, sv);
 					System.out.println("Service added");
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
-				} else {
-					System.out.println("Invalid type");
-				}
+                final int itemType = Helper.readInt("Enter option to select item type > ");
 
+<<<<<<< HEAD
+                if (itemType == 3) {
+                    // Add a service
+                    final Service sv = inputService();
+                    C206_CaseStudy.addService(serviceList, sv);
+                    System.out.println("Service added");
+=======
 			} else if (option == 3) {
 				// Loan item
 				C206_CaseStudy.setHeader("DELETE");			
@@ -103,6 +144,10 @@ public class C206_CaseStudy {
 					C206_CaseStudy.deleteProvider(serviceProvidersList, delete);
 				}
 
+                } else {
+                    System.out.println("Invalid type");
+                }
+
 				else if (itemType == 3) {
 					// Delete Service
 					C206_CaseStudy.deleteService(serviceList);
@@ -115,43 +160,72 @@ public class C206_CaseStudy {
 				System.out.println("Invalid option");
 			}}
 
-		}
 
-	
+            } else if (option == 3) {
+                // Delete item
+                C206_CaseStudy.setHeader("DELETE");
+                C206_CaseStudy.setHeader("ITEM TYPES");
+                System.out.println("1. Users");
+                System.out.println("2. Service Providers");
+                System.out.println("3. Services");
+                System.out.println("4. Quotes");
+                System.out.println("5. Requests");
+                System.out.println("6. Appointments");
 
-	public static void menu() {
-		C206_CaseStudy.setHeader("Renovation Portal");
-		System.out.println("1. View All");
-		System.out.println("2. Add");
-		System.out.println("3. Delete");
-		System.out.println("5. Quit");
-		Helper.line(80, "-");
+                final int itemType = Helper.readInt("Enter option to select item type > ");
 
-	}
-	
-	public static void setHeader(String header) {
-		Helper.line(80, "-");
-		System.out.println(header);
-		Helper.line(80, "-");
-	}
+                if (itemType == 3) {
+                    // Delete Service
+                	final String selectedID=Helper.readString("Enter ID of service to delete:");
+                    C206_CaseStudy.deleteService(serviceList,selectedID);
+                } else {
+                    System.out.println("Invalid type");
+                }
+            } else if (option == 4) {
+                System.out.println("Bye!");
+            } else {
+                System.out.println("Invalid option");
+            }
+        }
+    }
+
+<<<<<<< HEAD
+    public static void menu() {
+        C206_CaseStudy.setHeader("Renovation Portal");
+        System.out.println("1. View All");
+        System.out.println("2. Add");
+        System.out.println("3. Delete");
+        System.out.println("4. Quit");
+        Helper.line(80, "-");
+    }
+
+    public static void setHeader(final String header) {
+        Helper.line(80, "-");
+        System.out.println(header);
+        Helper.line(80, "-");
+    }
+
+
+
+  
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
 	public static String retrieveAllService(ArrayList<Service> serviceList) {
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 		String output = "";
 
 		for (int i = 0; i < serviceList.size(); i++) {
-			if (serviceList.get(i)!=null) {
-				output += String.format("%-10s %-30s %-20d\n", serviceList.get(i).getId(),
+
+			output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
 					serviceList.get(i).getDescription(), 
 					serviceList.get(i).getPrice());
-			}
 		}
 		return output;
 	}
 	
-	public static void viewAllServices(ArrayList<Service> serviceList) {
-		C206_CaseStudy.setHeader("SERVICE LIST");
+	public static void viewAllServices(final ArrayList<Service> serviceList) {
+		C206_CaseStudy.setHeader("Service LIST");
 		String output = String.format("%-10s %-30s %-20s\n", "ID", "DESCRIPTION",
 				"PRICE");
 		 output += retrieveAllService(serviceList);	
@@ -177,8 +251,10 @@ public class C206_CaseStudy {
 	}
 
 
+
 	//================================= Option 2 Add an item (CRUD - Create) =================================
 	public static User inputUser() { //add user
+		
 		// write your code here
 		String username = Helper.readString("Enter a username >");
 		String password = Helper.readString("Enter a password >");
@@ -192,11 +268,32 @@ public class C206_CaseStudy {
 		
 	}
 	
+	public static void addUser(ArrayList<User> userList, User newUser) {
+		// write your code here
+		User account;
+
+		for(int i = 0; i < userList.size(); i++) {
+			account = userList.get(i);
+			
+			if ((newUser.getUsername().isEmpty()) || (newUser.getUsername().isEmpty()) ) {
+				userList.add(newUser);
+			}
+		}
+	}
+	
 	public static Service inputService() {
 		String id = Helper.readString("Enter asset id > ");
 		String description = Helper.readString("Enter description > ");
 		int price = Helper.readInt("Enter price > ");
+>>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
 
+<<<<<<< HEAD
+    //================================= Option 2 Add an item (CRUD - Create) =================================
+    public static Service inputService() {
+        final String id = Helper.readString("Enter asset id > ");
+        final String description = Helper.readString("Enter description > ");
+        final double price = Helper.readDouble("Enter price > ");
+=======
 		Service sv= new Service(id, description, price);
 		return sv;
 		
@@ -265,15 +362,22 @@ public class C206_CaseStudy {
 	
 	}
 
+        final Service sv = new Service(id, description, price);
+        return sv;
+    }
 
-
-
-
-		
-	
-		
-		
-	}
+ 
+    //================================= Option 3 Delete an item (CRUD - Delete) =================================
+    public static void deleteService(final ArrayList<Service> serviceList, final String serviceId) {
+        for (int i = 0; i < serviceList.size(); i++) {
+            final Service service = serviceList.get(i);
+            if (service.getId().equals(serviceId)) {
+                serviceList.remove(i);
+                return;
+            }
+        }
+    }
+}
 
 	
 	
