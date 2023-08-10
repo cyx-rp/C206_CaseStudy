@@ -215,10 +215,7 @@ public C206_CaseStudyTest() {
 	    C206_CaseStudy.deleteService(serviceList,"");
 	    assertEquals("Check that the Service arraylist remains empty after deleting from an empty list", 0, serviceList.size());
 =======
-	public void c206_test() {
-		//fail("Not yet implemented"); 
-		assertTrue("C206_CaseStudy_SampleTest ",true);
-	}
+
 	
 	
 	//Hello World!

@@ -3,9 +3,7 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 <<<<<<< HEAD
-    public static void main(final String[] args) {
-
-        final ArrayList<Service> serviceList = new ArrayList<Service>();
+   
 =======
 	public static void main(String[] args) {
 		
@@ -217,16 +215,7 @@ public class C206_CaseStudy {
 
 
 
-    //================================= Option 1 View items (CRUD- Read) =================================
-    public static String retrieveAllService(final ArrayList<Service> serviceList) {
-=======
-	}
-	
-	public static void setHeader(String header) {
-		Helper.line(80, "-");
-		System.out.println(header);
-		Helper.line(80, "-");
-	}
+  
 	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
@@ -388,20 +377,7 @@ public class C206_CaseStudy {
         return sv;
     }
 
-    public static void addService(final ArrayList<Service> serviceList, final Service sv) {
-        Service item;
-        for (int i = 0; i < serviceList.size(); i++) {
-            item = serviceList.get(i);
-            if (item.getId().equals(sv.getId())) // Updated to use equals() for case-sensitive comparison
-                return;
-        }
-        if ((sv.getId().isEmpty()) || (sv.getDescription().isEmpty())) {
-            return;
-        }
-
-        serviceList.add(sv);
-    }
-
+ 
     //================================= Option 3 Delete an item (CRUD - Delete) =================================
     public static void deleteService(final ArrayList<Service> serviceList, final String serviceId) {
         for (int i = 0; i < serviceList.size(); i++) {
