@@ -1,9 +1,8 @@
 import static org.junit.Assert.*;
 
-<<<<<<< HEAD
-=======
-import java.io.ByteArrayInputStream;
->>>>>>> branch 'master' of https://github.com/cyx-rp/C206_CaseStudy.git
+
+
+
 import java.util.ArrayList;
 
 import org.junit.After;
