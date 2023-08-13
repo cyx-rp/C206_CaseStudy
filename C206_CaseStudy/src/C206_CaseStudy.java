@@ -283,6 +283,7 @@ public class C206_CaseStudy {
 		serviceProvidersList.add(sp);
 	}
 	
+	//request input
 	public static Request inputRequest(ArrayList<Request> requestsList) {	
 	    String username = Helper.readString("Enter username > ");
 	    String password = Helper.readString("Enter password > ");
@@ -293,6 +294,7 @@ public class C206_CaseStudy {
 	    return rv;
 	}
 	
+	//add request
 	public static void addRequest(ArrayList<Request> requestsList, ArrayList<User> userList, ArrayList<Service> serviceList, Request rv) {
 	    if (!checkValidUser(rv, userList) || !checkValidService(rv, serviceList) || !checkUniqueId(rv, requestsList) || !checkCompleteFields(rv)) {
 	        return;

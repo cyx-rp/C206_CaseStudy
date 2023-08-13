@@ -110,7 +110,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that Request arraylist size is 2", 2, requestsList.size());
 		assertSame("Check that Request is added", rq2, requestsList.get(1));
 		
-		//test for relevant fields are missing	    
+		//test for relevant field are missing	    
 		requestsList.clear();
 	    Request quoteRequest = new Request("", "", "", "");
 		C206_CaseStudy.addRequest(requestsList,userList,serviceList,quoteRequest);
