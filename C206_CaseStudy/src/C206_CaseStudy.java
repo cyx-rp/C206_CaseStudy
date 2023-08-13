@@ -194,7 +194,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	//Request
+	//Requests
 	public static String retrieveAllRequests(ArrayList<Request> requestsList) {
 		String output = "";
 
