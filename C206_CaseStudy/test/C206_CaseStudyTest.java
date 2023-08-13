@@ -182,7 +182,7 @@ public class C206_CaseStudyTest {
 	    // Attempt to delete a value from an empty list
 	    
 	    C206_CaseStudy.deleteRequest(requestsList,"Jane","janetan","RQ001");
-	    // Verify that request list size remains 0 and appropriate message is shown
+	    // Verify that request list size remains 0 and appropriate message is shownd
 	    assertEquals("Test that the Service Providers arraylist size remains 0.", 0, requestsList.size());
 	}
 	
