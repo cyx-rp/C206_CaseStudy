@@ -110,7 +110,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that Request arraylist size is 2", 2, requestsList.size());
 		assertSame("Check that Request is added", rq2, requestsList.get(1));
 		
-		//test for relevant fields are missing	    
+		//test for relevant field are missing	    
 		requestsList.clear();
 	    Request quoteRequest = new Request("", "", "", "");
 		C206_CaseStudy.addRequest(requestsList,userList,serviceList,quoteRequest);
@@ -182,7 +182,7 @@ public class C206_CaseStudyTest {
 	    // Attempt to delete a value from an empty list
 	    
 	    C206_CaseStudy.deleteRequest(requestsList,"Jane","janetan","RQ001");
-	    // Verify that request list size remains 0 and appropriate message is shownd
+	    // Verify that request list size remains 0 and appropriate message is shown
 	    assertEquals("Test that the Service Providers arraylist size remains 0.", 0, requestsList.size());
 	}
 	

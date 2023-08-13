@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//Request Class
 public class Request extends User{
 
 	private String requestId;
