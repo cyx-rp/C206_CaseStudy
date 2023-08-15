@@ -24,19 +24,18 @@ public class C206_CaseStudy {
 		requestsList.add(new Request("RQ001","Jane","janetan","Bathroom Renovation"));
 		requestsList.add(new Request("RQ002","Bill","billong", "Attic Conversion"));
 		
-		//List of quotes
+		//List of Quotes
 		ArrayList<Quote> quotesList = new ArrayList<Quote>();
 		quotesList.add(new Quote("Q001","Install fluted panel", 150));
 		quotesList.add(new Quote("Q002","Polish parquet", 200));
+		
+		//List of Appointments(String id, String username, String serviceProvider, String service, String date, String time) 
+		ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+		appointmentList.add(new Appointment("A001","username","provider","service", "2023-08-15", "10:00 AM"));
+		appointmentList.add(new Appointment("A002", "username", "provider", "service", "2023-08-16", "11:00 AM"));
 		int option = 0;
 
-		while (option != 4) {
-		
-		//Login portion
-			C206_CaseStudy.login();
-   		 option = Helper.readInt("Enter an option > ");
-   		 
-   		 		
+		while (option != 4) {	
 		//main menu
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
@@ -65,6 +64,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.viewAllRequests(requestsList);
 				}else if(itemType==6) {
 					//view appointment
+					C206_CaseStudy.viewAllAppointments(appointmentList);
 				}else {
 					System.out.println("Invalid type");
 				}
@@ -115,14 +115,14 @@ public class C206_CaseStudy {
 				
 				else if (itemType == 6) {
 					// Add an appointment
-
-
+			        Appointment appointment = C206_CaseStudy.inputAppointment();
+			        C206_CaseStudy.addAppointment(appointmentList, appointment);
 				} else {
 					System.out.println("Invalid type");
 				}
 
 			} else if (option == 3) {
-				// Loan item
+				// Delete item
 				C206_CaseStudy.setHeader("DELETE");			
 				C206_CaseStudy.setHeader("ITEM TYPES");
 				System.out.println("1. Users");
@@ -159,8 +159,10 @@ public class C206_CaseStudy {
 					String pass = Helper.readString("Enter password > ");
 					String rqId = Helper.readString("Enter request id > ");
 				    C206_CaseStudy.deleteRequest(requestsList,user,pass,rqId);	
-
-					
+				}
+				else if (itemType == 6) {
+			        String delete = Helper.readString("Enter the ID of the appointment to be deleted > ");
+			        C206_CaseStudy.deleteAppointment(appointmentList, delete);			
 				} else {
 					System.out.println("Invalid type");
 				}
@@ -172,16 +174,6 @@ public class C206_CaseStudy {
 
 		}
 	
-	public static void login() {
-   	 C206_CaseStudy.setHeader("Renovation Portal");
-   	 System.out.println("1. User");
-   	 System.out.println("2. Service Provider");
-   	 System.out.println("3. Delete");
-   	 System.out.println("4. Quit");
-   	 Helper.line(80, "-");
-
-    }
-	
 	public static void menu() {
 		C206_CaseStudy.setHeader("Renovation Portal");
 		System.out.println("1. View All");
@@ -189,7 +181,6 @@ public class C206_CaseStudy {
 		System.out.println("3. Delete");
 		System.out.println("5. Quit");
 		Helper.line(80, "-");
-
 	}
 	
 	public static void setHeader(String header) {
@@ -197,7 +188,6 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-	
 	
 	//================================= Option 1 View items (CRUD- Read) =================================
 	//to get list of users for viewing
@@ -278,7 +268,7 @@ public class C206_CaseStudy {
 		String output = "";
 		for(int x=0; x < quotesList.size(); x++) {
 			if(quotesList.get(x)!=null) {
-				output += String.format("%-10s %-100s %-20f %-10s %-10s\n", quotesList.get(x).getId(),quotesList.get(x).getAdditionalInfo(),quotesList.get(x).getPrice(), quotesList.get(x).getProviderID(), quotesList.get(x).getRequestID());
+				output += String.format("%-10s %-100s %-20.2f %-10s %-10s\n", quotesList.get(x).getId(),quotesList.get(x).getAdditionalInfo(),quotesList.get(x).getPrice(), quotesList.get(x).getProviderID(), quotesList.get(x).getRequestID());
 			}
 		}
 		return output;
@@ -305,6 +295,26 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
+	public static void viewAllAppointments(ArrayList<Appointment> appointmentList) {
+		 setHeader("APPOINTMENT LIST");
+		 String output = String.format("%-10s %-20s %-30s %-20s %-20s %-10s\n", "ID", "USERNAME", "SERVICE PROVIDER", "SERVICE", "DATE", "TIME");
+		 output += retrieveAllAppointments(appointmentList);
+		 System.out.println(output);
+		}
+
+		//Retrieve all appointments
+		public static String retrieveAllAppointments(ArrayList<Appointment> appointmentList) {
+		 String output = "";
+		 for (int i = 0; i < appointmentList.size(); i++) {
+		     Appointment appointment = appointmentList.get(i);
+		     if (appointment != null) {
+		         output += String.format("%-10s %-20s %-30s %-20s %-20s %-10s\n",
+		             appointment.getId(), appointment.getUsername(), appointment.getServiceProvider(),
+		             appointment.getService(), appointment.getDate(), appointment.getTime());
+		     }
+		 }
+		 return output;
+		}
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
 
@@ -478,6 +488,33 @@ public static User inputUser() { //add user
 	    return true;
 	}
 	
+	public static Appointment inputAppointment() {
+		 String id = Helper.readString("Enter appointment ID > ");
+		 String username = Helper.readString("Enter username > ");
+		 String serviceProvider = Helper.readString("Enter service provider name > ");
+		 String service = Helper.readString("Enter service description > ");
+		 String date = Helper.readString("Enter date (YYYY-MM-DD) > ");
+		 String time = Helper.readString("Enter time (HH:mm AM/PM) > ");
+
+		 return new Appointment(id, username, serviceProvider, service, date, time);
+		}
+
+		public static void addAppointment(ArrayList<Appointment> appointmentList, Appointment appointment) {
+		    Appointment app;
+		    for (int x = 0; x < appointmentList.size(); x++) {
+		    	app = appointmentList.get(x);
+				if(app.getId().equalsIgnoreCase(appointment.getId()) ){
+				return;
+			}
+				if((appointment.getId().isEmpty()) || (appointment.getUsername().isEmpty()) || (appointment.getServiceProvider().isEmpty()) 
+						|| (appointment.getService().isEmpty()) || (appointment.getDate().isEmpty()) || (appointment.getTime().isEmpty()) ) {
+				return;
+			}	
+		    }
+		 appointmentList.add(appointment);
+		 System.out.println("Appointment added");
+		}
+	
 	//================================= Option 3 Delete an item (CRUD - Update) =================================
 	public static void deleteUser(ArrayList<User> userList, String userInput) {
 	   	 for (int i = 0; i < userList.size(); i++) {
@@ -535,6 +572,19 @@ public static User inputUser() { //add user
 	        }
 	    }
 	}
+	
+	public static void deleteAppointment(ArrayList<Appointment> appointmentList, String appointmentId) {
+	    for (int i = 0; i < appointmentList.size(); i++) {
+	        Appointment appointment = appointmentList.get(i);
+	        if (appointment.getId().equalsIgnoreCase(appointmentId)) {
+	            appointmentList.remove(i);
+	            System.out.println("Appointment with ID " + appointmentId + " has been deleted.");
+	            return;
+	        }
+	    }
+	    System.out.println("Appointment with ID " + appointmentId + " was not found.");
+	}
+
 }
 
 

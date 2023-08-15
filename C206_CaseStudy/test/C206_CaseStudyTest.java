@@ -20,13 +20,15 @@ public class C206_CaseStudyTest {
 	private Request rq2;
 	private Quote q1;
 	private Quote q2;
+	private Appointment a1;
+	private Appointment a2;
 	
 	private ArrayList<ServiceProviders> serviceProvidersList;
 	private ArrayList<User> userList;
 	private ArrayList<Request> requestsList;
     private ArrayList<Service> serviceList;
     private ArrayList<Quote> quotesList;
-
+    private ArrayList<Appointment> appointmentList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,14 +41,18 @@ public class C206_CaseStudyTest {
 		rq2 = new Request("RQ002","Bill","billong", "Attic Conversion");
         sv1 = new Service("SV001", "Bathroom Renovation", 35.00);
 		sv2 = new Service("SV002", "Attic Conversion", 10.00);
-		q1 = new Quote("Q001","Install fluted panel", 150);
-		q2 = new Quote("Q002","Polish parquet", 200);
+		q1 = new Quote("Q001","Install fluted panel", 150, "SP001", "RQ001");
+		q2 = new Quote("Q002","Polish parquet", 200, "SP002", "RQ002");
+		a1 = new Appointment("A001","username","provider","service", "2023-08-15", "10:00 AM");
+		a2 = new Appointment("A002", "username", "provider", "service", "2023-08-16", "11:00 AM");
 		
 		userList = new ArrayList<User>();
 		serviceList=new ArrayList<Service> ();
 		serviceProvidersList = new ArrayList<ServiceProviders>();	
 		requestsList = new ArrayList<Request>();		
 		quotesList = new ArrayList<Quote>();
+		appointmentList = new ArrayList<Appointment>();
+	
 	}
 	
 	@Test
@@ -157,31 +163,59 @@ public class C206_CaseStudyTest {
 	
     @Test 
     public void testAddQuote() { 
-        ArrayList<Quote> quotesList = new ArrayList<>(); 
-        Quote q = new Quote("ID123", "Info", 100.0, "Provider123", "Request123"); 
- 
-        C206_CaseStudy.addQuote(quotesList, q); 
-        assertTrue(quotesList.contains(q)); 
- 
-        // Test adding a duplicate quote 
-        C206_CaseStudy.addQuote(quotesList, q); 
-        assertEquals(1, quotesList.size()); 
- 
-        // Test adding a valid quote 
-        Quote validQuote = new Quote("ID123", "Additional Info", 100.0, "Provider123", "Request123"); 
-        C206_CaseStudy.addQuote(quotesList, validQuote); 
-        assertEquals("Check that Quote is added", 1, quotesList.size()); 
-        assertTrue("Check that Quote is in the list", quotesList.contains(validQuote)); 
- 
-        // Test adding a duplicate quote 
-        C206_CaseStudy.addQuote(quotesList, validQuote); 
-        assertEquals("Check that duplicate Quote is not added", 1, quotesList.size()); 
- 
-        // Test adding a quote with missing fields 
-        Quote quoteWithMissingFields = new Quote("", "", 0.0, "", ""); 
-        C206_CaseStudy.addQuote(quotesList, quoteWithMissingFields); 
-        assertEquals("Check that Quote with missing fields is not added", 1, quotesList.size()); 
+    	//Test Case 1
+    			// Service Providers list is not null and it is empty
+    					assertNotNull("Test if there is valid Quotes arraylist to add to", quotesList);
+    					assertEquals("Test that the Quotes arraylist is currently empty.", 0, quotesList.size());
+    					//Given an empty list, after adding 1 item, the size of the list is 1
+    					C206_CaseStudy.addQuote(quotesList, q1);	
+    					assertEquals("Test that the Quotes arraylist size is now 1.", 1, quotesList.size());
+    					
+    					//Test Case 2
+    					// Add a Service provider
+    					C206_CaseStudy.addQuote(quotesList, q2);
+    					assertEquals("Test that the Quotes arraylist size is now 2.", 2, quotesList.size());
+    					//The item just added is as same as the last item in the list
+    					assertSame("Test that Quotes is added to the end of the list.", q2, quotesList.get(1));
+    					
+    					//Test Case 3
+    					// Add a service provider that already exists in the list
+    					C206_CaseStudy.addQuote(quotesList, q2);
+    					assertEquals("Test that the Quotes arraylist size is unchanged.", 2, quotesList.size());
+    					
+    					//Test Case 4
+    					// Add a service provider that has missing details
+    					Quote cc_missing = new Quote("Q003", "", 60);
+    					C206_CaseStudy.addQuote(quotesList, cc_missing);
+    					assertEquals("Test that the Quotes arraylist size is unchanged.", 2,quotesList.size());
     } 
+    
+    @Test
+    public void testAddAppointment() {
+		// Item list is not null, so that can add a new item - boundary
+		assertNotNull("Check if there is valid Appointment arraylist to add to", appointmentList);
+		//Given an empty list, after adding 1 item, the size of the list is 1
+        C206_CaseStudy.addAppointment(appointmentList, a1);	
+		assertEquals("Test that the appointment arraylist size is now 1.", 1, appointmentList.size());
+		//Test Case 2
+		// Add an Appointment
+		C206_CaseStudy.addAppointment(appointmentList, a2);
+		assertEquals("Test that the appointment arraylist size is now 2.", 2, appointmentList.size());
+		//The item just added is as same as the last item in the list
+		assertSame("Test that appointment is added to the end of the list.", a2, appointmentList.get(1));
+		
+		//Test Case 3
+		// Add an appointment already exists in the list
+		C206_CaseStudy.addAppointment(appointmentList, a2);
+		assertEquals("Test that the appointment arraylist size is unchanged.", 2, appointmentList.size());
+		
+		//Test Case 4
+		// Add appointment that has missing details
+		Appointment app_missing = new Appointment("","","","","","");
+		C206_CaseStudy.addAppointment(appointmentList, app_missing);
+		assertEquals("Test that the Quotes arraylist size is unchanged.", 2,appointmentList.size());
+
+    }
 	
 	//testViewAllUsers
     @Test
@@ -271,23 +305,32 @@ public class C206_CaseStudyTest {
 
 	  @Test 
 	  public void testViewAllQuotes() { 
-	        ArrayList<Quote> quotesList = new ArrayList<>(); 
-	        quotesList.add(new Quote("Q001", "Install fluted panel", 150)); 
-	        quotesList.add(new Quote("Q002", "Polish parquet", 200)); 
-	 
-	        C206_CaseStudy.viewAllQuotes(quotesList); 
-	 
-	        String expectedOutput = "Expected formatted output here"; // Replace with your expected output 
-	        assertEquals(expectedOutput, outputStream.toString().trim()); 
-	 
-	        // Reset system out 
-	        System.setOut(System.out); 
+	        assertNotNull("Test if there is valid Quotes arraylist to add to", quotesList);
+			assertEquals("Test that the quotes arraylist is empty." , 0, quotesList.size());
+			// Attempt to retrieve the Service Providers 
+			String allQuotes = C206_CaseStudy.retrieveAllQuotes(quotesList);
+			String testOutput = "";
+			//Test if the output is empty
+			assertEquals("Test that nothing is displayed", testOutput, allQuotes);
+			
+			//Test Case 2 
+			C206_CaseStudy.addQuote(quotesList, q1);
+			C206_CaseStudy.addQuote(quotesList, q2);
+			//Test that the list is not empty
+			assertEquals("Test that Quotes arraylist size is 2. ", 2, quotesList.size());
+			// Attempt to retrieve the Quotes 
+			allQuotes = C206_CaseStudy.retrieveAllQuotes(quotesList);
+			testOutput = String.format("%-10s %-100s %-20.2f %-10s %-10s\n","Q001","Install fluted panel", 150.00, "SP001", "RQ001");
+			testOutput += String.format("%-10s %-100s %-20.2f %-10s %-10s\n","Q002","Polish parquet", 200.00, "SP002", "RQ002");
+			// Test that the details are displayed correctly
+			assertEquals("Test that the display is correct.", testOutput, allQuotes);
+
+			
 	    } 
 
 	@Test
 	public void testRetrieveAllRequests() {
 		// Test if Item list is not null but empty -boundary
-		assertNotNull("Test if there is valid Request arraylist to retrieve item", requestsList);
 		
 		//test if the list of requests retrieved from the SourceCentre is empty - boundary
 		String retrieveAllRequests = C206_CaseStudy.retrieveAllRequests(requestsList);
@@ -319,6 +362,31 @@ public class C206_CaseStudyTest {
 	        assertNotNull("Quote status should not be empty", request.getQuoteStatus());
 		}
 	}
+	
+	  @Test 
+	  public void testViewAllAppointment() { 
+	        assertNotNull("Test if there is valid Appointment arraylist to add to", appointmentList);
+			assertEquals("Test that the appointment arraylist is empty." , 0, appointmentList.size());
+			// Attempt to retrieve the Service Providers 
+			String allAppointments = C206_CaseStudy.retrieveAllAppointments(appointmentList);
+			String testOutput = "";
+			//Test if the output is empty
+			assertEquals("Test that nothing is displayed", testOutput, allAppointments);
+			
+			//Test Case 2 
+			C206_CaseStudy.addAppointment(appointmentList, a1);
+			C206_CaseStudy.addAppointment(appointmentList, a2);
+			//Test that the list is not empty
+			assertEquals("Test that Appointment arraylist size is 2. ", 2, appointmentList.size());
+			// Attempt to retrieve the Quotes 
+			allAppointments = C206_CaseStudy.retrieveAllAppointments(appointmentList);
+			testOutput = String.format("%-10s %-20s %-30s %-20s %-20s %-10s\n","A001","username","provider","service", "2023-08-15", "10:00 AM");
+			testOutput += String.format("%-10s %-20s %-30s %-20s %-20s %-10s\n","A002", "username", "provider", "service", "2023-08-16", "11:00 AM");
+			// Test that the details are displayed correctly
+			assertEquals("Test that the display is correct.", testOutput, allAppointments);
+
+			
+	    } 
 
 	  @Test
 	  public void testDeleteService() {  //Item list is not null, so that can delete a new item - boundary
@@ -411,20 +479,40 @@ public class C206_CaseStudyTest {
 	
     @Test 
     public void testDeleteQuote() { 
-    	C206_CaseStudy.addQuote(quotesList,q1); 
-    	C206_CaseStudy.addQuote(quotesList,q2); 
- 
-        C206_CaseStudy.deleteQuote(quotesList, "R0001"); 
-        assertEquals("Check that quote1 is deleted", 1, quotesList.size()); 
-        assertFalse("Check that quote1 is removed from the list", quotesList.contains(q1)); 
- 
-        // Test deleting a non-existent quote 
-        C206_CaseStudy.deleteQuote(quotesList, "NonExistentID"); 
-        assertEquals("Check that non-existent quote deletion does not affect the list", 1, quotesList.size()); 
- 
-        // Test deleting the last quote 
-        C206_CaseStudy.deleteQuote(quotesList, "R0002"); 
-        assertEquals("Check that quote2 is deleted", 0, quotesList.size()); 
+    	//Test Case 1
+    			assertNotNull("Test if there is valid Quotes arraylist to add to", quotesList);
+    			assertEquals("Test that the Quotes arraylist is empty.", 0, quotesList.size());
+    			C206_CaseStudy.addQuote(quotesList, q1);
+    			assertEquals("Test that the Quotes arraylist size is now 1.", 1, quotesList.size());
+    			// Attempt to delete the existing service provider
+    			C206_CaseStudy.deleteQuote(quotesList, "Q001");
+    			// Verify that the service provider is removed and appropriate message is shown
+    			assertEquals("Test that the Qoutes arraylist size is now 0.", 0, quotesList.size());
+    			
+    		//Test Case 2
+    			//Delete a Non-Existing service provider
+    			C206_CaseStudy.addQuote(quotesList, q1);
+    		    int initialSize = quotesList.size();
+    		    assertEquals("Test that the Quotes arraylist size is now 1.", 1, quotesList.size());
+
+    		    // Attempt to delete a non-existing service provider
+    		    String nonExistingId = "Q002";
+    		    C206_CaseStudy.deleteQuote(quotesList, nonExistingId);
+
+    		    // Verify that the service provider list size remains the same
+    		    assertEquals("Test that the Quotes arraylist size remains 1.", initialSize, quotesList.size());
+
+
+    		    //Test Case 3
+    		    //Delete from empty List
+    		    quotesList.clear();
+
+    		    // Attempt to delete from an empty list
+    		    String deleteId2 = "Q001"; // Assuming SP001 doesn't exist
+    		    C206_CaseStudy.deleteProvider(serviceProvidersList, deleteId2);
+
+    		    // Verify that SQuotes size remains 0 and appropriate message is shown
+    		    assertEquals("Test that the Quotes arraylist size remains 0.", 0, quotesList.size());	
     } 
 
 	@Test
@@ -481,7 +569,47 @@ public class C206_CaseStudyTest {
 	    assertEquals("Test that the Service Providers arraylist size remains 0.", 0, requestsList.size());
 	}
 	
+    @Test 
+    public void testDeleteAppointment() { 
+    	//Test Case 1
+    			assertNotNull("Test if there is valid Appointment arraylist to add to", appointmentList);
+    			assertEquals("Test that the Appointment arraylist is empty.", 0, appointmentList.size());
+    			C206_CaseStudy.addAppointment(appointmentList, a1);
+    			assertEquals("Test that the Appointment arraylist size is now 1.", 1, appointmentList.size());
+    			// Attempt to delete the existing appointment
+    			C206_CaseStudy.deleteAppointment(appointmentList, "A001");
+    			// Verify that the appointment is removed and appropriate message is shown
+    			assertEquals("Test that the Appointment arraylist size is now 0.", 0, appointmentList.size());
+    			
+    		//Test Case 2
+    			//Delete a Non-Existing appointment
+    			C206_CaseStudy.addAppointment(appointmentList, a1);
+    		    int initialSize = appointmentList.size();
+    		    assertEquals("Test that the Appointment arraylist size is now 1.", 1, appointmentList.size());
+
+    		    // Attempt to delete a non-existing appointment
+    		    String nonExistingId = "A003";
+    		    C206_CaseStudy.deleteAppointment(appointmentList, nonExistingId);
+
+    		    // Verify that the appointment list size remains the same
+    		    assertEquals("Test that the Quotes arraylist size remains 1.", initialSize, appointmentList.size());
+
+
+    		    //Test Case 3
+    		    //Delete from empty List
+    		    appointmentList.clear();
+
+    		    // Attempt to delete from an empty list
+    		    String deleteId2 = "A001"; // Assuming SP001 doesn't exist
+    		    C206_CaseStudy.deleteAppointment(appointmentList, deleteId2);
+
+    		    // Verify that SQuotes size remains 0 and appropriate message is shown
+    		    assertEquals("Test that the appointment arraylist size remains 0.", 0, appointmentList.size());	
+    } 
 
 }
+
+
+
 
 
