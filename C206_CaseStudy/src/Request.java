@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 //Request class
 public class Request extends User{
 
@@ -44,3 +43,4 @@ public class Request extends User{
  }
 
 }
+
