@@ -1,13 +1,13 @@
 public class User {
-
-	// Creating the fields
+	
+	//Creating the fields
 	private String username;
 	private String password;
 	private String email;
 	private int contact;
 	private String address;
-
-	// Constructor
+	
+	//Constructor
 	public User(String username, String password, String email, int contact, String address) {
 		super();
 		this.username = username;
@@ -16,14 +16,15 @@ public class User {
 		this.contact = contact;
 		this.address = address;
 	}
-
+	
 	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
 	}
-
-	// Getters
+	
+	
+	//Getters
 	public String getUsername() {
 		return username;
 	}
@@ -43,8 +44,8 @@ public class User {
 	public String getAddress() {
 		return address;
 	}
-
-	// Setters
+	
+	//Setters
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -64,14 +65,16 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
- 
- 
- 
- 
- 
- 
- 
- 
- 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
