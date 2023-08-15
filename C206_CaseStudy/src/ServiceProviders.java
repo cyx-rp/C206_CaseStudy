@@ -53,7 +53,7 @@ public class ServiceProviders {
 	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
-	///
+	////
 }
 
 
