@@ -72,21 +72,21 @@ public class C206_CaseStudyTest {
 				assertEquals("Test that Service Providers arraylist size is 2.", 2, serviceProvidersList.size());
 				// Attempt to retrieve the Service Providers 
 				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
-				testOutput = String.format("%-10s %-30s %-20f\n","SP001", "Aces Renovation", 80.00);
-				testOutput += String.format("%-10s %-30s %-20f\n","SP002", "Stellar Services", 90.00);
+				testOutput = String.format("%-10s %-30s %-20d\n","SP001", "Aces Renovation", 80);
+				testOutput += String.format("%-10s %-30s %-20d\n","SP002", "Stellar Services", 90);
 				// Test that the details are displayed correctly
 				assertEquals("Test that the display is correct.", testOutput, allProviders);
 
 				//Test Case 3
 				sp3.setIsAvailable(false);
 				C206_CaseStudy.addServiceProviders(serviceProvidersList, sp3);
-				assertEquals("Test that Camcorder arraylist size is 2.", 3, serviceProvidersList.size());
+				assertEquals("Test that Camcorder arraylist size is 3.", 3, serviceProvidersList.size());
 				assertFalse("Test that the last item in the arraylist is not available", serviceProvidersList.get(2).getIsAvailable());
 				// Attempt to retrieve the Service Providers 
 				allProviders= C206_CaseStudy.retrieveAllServiceProviders(serviceProvidersList);
-				testOutput = String.format("%-10s %-30s %-20f\n","SP001", "Aces Renovation", 80.00);
-				testOutput += String.format("%-10s %-30s %-20f\n","SP002", "Stellar Services", 90.00);
-				testOutput += String.format("%-10s %-30s %-20f\n","SP003", "Tucker's", 50.00);
+				testOutput = String.format("%-10s %-30s %-20d\n","SP001", "Aces Renovation", 80);
+				testOutput += String.format("%-10s %-30s %-20d\n","SP002", "Stellar Services", 90);
+				testOutput += String.format("%-10s %-30s %-20d\n","SP003", "Tucker's", 50);
 				// Test that the details are displayed correctly
 				assertEquals("Test that the display is correct.", testOutput, allProviders);
 	}
@@ -99,21 +99,40 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
 		assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
 		// Attempt to delete the existing service provider
-		C206_CaseStudy.deleteProvider(serviceProvidersList);
+		String deleteId = "SP001";
+		C206_CaseStudy.deleteProvider(serviceProvidersList,deleteId);
 		// Verify that the service provider is removed and appropriate message is shown
 		assertEquals("Test that the Service Providers arraylist size is now 0.", 0, serviceProvidersList.size());
 		
 		//Test Case 2
 		C206_CaseStudy.addServiceProviders(serviceProvidersList, sp1);
-	    assertEquals("Test that the Service Providers arraylist size is now 1.", 1, serviceProvidersList.size());
+	    int initialSize = serviceProvidersList.size();
 
 	    // Attempt to delete a non-existing service provider
+	    String nonExistingId = "SP002";
+	    C206_CaseStudy.deleteProvider(serviceProvidersList, nonExistingId);
+
+	    // Verify that the service provider list size remains the same
+	    assertEquals("Test that the Service Providers arraylist size remains 1.", initialSize, serviceProvidersList.size());
+	    
+	  //Test Case 3
+	    //Delete from empty List
+	    serviceProvidersList.clear();
+
+	    // Attempt to delete from an empty list
+	    String deleteId2 = "SP001"; // Assuming SP001 doesn't exist
+	    C206_CaseStudy.deleteProvider(serviceProvidersList, deleteId2);
+
+	    // Verify that Service Providers size remains 0 and appropriate message is shown
+	    assertEquals("Test that the Service Providers arraylist size remains 0.", 0, serviceProvidersList.size());
+	    
 	    
 	}
 	
 ///
 	@After
 	public void tearDown() throws Exception {
+		 serviceProvidersList.clear();
 	}
 
 	@Test
@@ -126,3 +145,5 @@ public class C206_CaseStudyTest {
 	//Hello World!
 
 }
+
+	

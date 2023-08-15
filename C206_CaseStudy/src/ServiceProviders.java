@@ -1,17 +1,27 @@
+/*
+ * I declare that this code was written by me. 
+ * I do not copy or allow others to copy my code. 
+ * I understand that copying code is considered as plagiarism.
+ * 
+ * Student Name: Adriel Lok 
+ * Student ID: 22016845
+ * Class: W65C
+ * Date/Time created: Tuesday 15-08-2023 15:45
+ */
 
 
 public class ServiceProviders {
 	
 	private String providerId;
 	private String providerName;
-	private double providerPricing;
+	private int providerCustomers;
 	private boolean isAvailable;
 	
-	public ServiceProviders(String providerId, String providerName, double providerPricing) {
+	public ServiceProviders(String providerId, String providerName, int providerCustomers) {
 		super();
 		this.providerId=providerId;
 		this.providerName=providerName;
-		this.providerPricing=providerPricing;
+		this.providerCustomers=providerCustomers;
 		this.isAvailable = true;
 	}
 	
@@ -29,11 +39,11 @@ public class ServiceProviders {
 		this.providerName=providerName;
 	}
 	
-	public double getPrice() {
-		return providerPricing;
+	public double getCustomers() {
+		return providerCustomers;
 	}
-	public void setPrice(double providerPricing) {
-		this.providerPricing=providerPricing;
+	public void setCustomers(int providerCustomers) {
+		this.providerCustomers=providerCustomers;
 	}
 	
 	public boolean getIsAvailable() {
