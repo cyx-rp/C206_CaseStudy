@@ -1,13 +1,4 @@
-/*
- * I declare that this code was written by me. 
- * I do not copy or allow others to copy my code. 
- * I understand that copying code is considered as plagiarism.
- * 
- * Student Name: Adriel Lok 
- * Student ID: 22016845
- * Class: W65C
- * Date/Time created: Tuesday 15-08-2023 15:45
- */
+
 
 
 public class ServiceProviders {

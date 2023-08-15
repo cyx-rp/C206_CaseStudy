@@ -9,7 +9,6 @@ public Service(String id, String description, double price) {
 	this.id = id;
 	this.description = description;
 	this.price = price;
-
 }
 
 public String getId() {
