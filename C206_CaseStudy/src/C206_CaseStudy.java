@@ -53,9 +53,9 @@ public class C206_CaseStudy {
 				System.out.println("6. Appointments");
 				
 				int itemType = Helper.readInt("Enter option to select what you want to view > ");
-				if(itemType==1) {
-				}
-				else if(itemType==2) {
+				if (itemType==1) {
+					C206_CaseStudy.viewAllUsers(userList);
+				}else if(itemType==2) {
 					C206_CaseStudy.viewAllServiceProviders(serviceProvidersList);
 				}else if (itemType==3) {
 					C206_CaseStudy.viewAllServices(serviceList);
@@ -63,6 +63,10 @@ public class C206_CaseStudy {
 					C206_CaseStudy.viewAllQuotes(quotesList);
 				}else if(itemType==5) {
 					C206_CaseStudy.viewAllRequests(requestsList);
+				}else if(itemType==6) {
+					//view appointment
+				}else {
+					System.out.println("Invalid type");
 				}
 
 			} else if (option == 2) {
@@ -106,6 +110,12 @@ public class C206_CaseStudy {
 					// Add a request
 					Request rv = inputRequest(requestsList);
 					C206_CaseStudy.addRequest(requestsList,userList,serviceList,rv);
+					
+				}
+				
+				else if (itemType == 6) {
+					// Add an appointment
+
 
 				} else {
 					System.out.println("Invalid type");
@@ -124,7 +134,8 @@ public class C206_CaseStudy {
 				
 				int itemType = Helper.readInt("Enter option to select item type > ");
 				if(itemType == 1) {
-					
+					String userInput = Helper.readString("Enter the username of the account you want to delete >");
+					C206_CaseStudy.deleteUser(userList, userInput);
 				}
 				else if (itemType == 2) {
 					String delete = Helper.readString("Enter the id of the Service provider to be deleted > ");
@@ -212,18 +223,20 @@ public class C206_CaseStudy {
 	      
 	    }
 
-	public static String retrieveAllService(ArrayList<Service> serviceList) {
-		String output = "";
 
-		for (int i = 0; i < serviceList.size(); i++) {
-			if (serviceList.get(i)!=null) {
-				output += String.format("%-10s %-30s %-20.2f\n", serviceList.get(i).getId(),
-					serviceList.get(i).getDescription(), 
-					serviceList.get(i).getPrice());
-			}
-		}
-		return output;
-	}
+	public static String retrieveAllService(ArrayList<Service> serviceList) { 
+	  String output = ""; 
+	 
+	  for (int i = 0; i < serviceList.size(); i++) { 
+	   Service serviceID = serviceList.get(i); 
+	   if (serviceID!=null) { 
+	    output += String.format("%-10s %-30s %-20.2f\n", serviceID.getId(), 
+	     serviceID.getDescription(),  
+	     serviceID.getPrice()); 
+	   } 
+	  } 
+	  return output; 
+	 }
 	
 	public static void viewAllServices(ArrayList<Service> serviceList) {
 		C206_CaseStudy.setHeader("SERVICE LIST");
@@ -246,7 +259,7 @@ public class C206_CaseStudy {
 		String output = "";
 		for(int x=0; x < serviceProvidersList.size(); x++) {
 			if(serviceProvidersList.get(x)!=null) {
-				output += String.format("%-10s %-30s %-20f\n", serviceProvidersList.get(x).getId(),serviceProvidersList.get(x).getName(),serviceProvidersList.get(x).getPrice());
+				output += String.format("%-10s %-30s %-20f\n", serviceProvidersList.get(x).getId(),serviceProvidersList.get(x).getName(),serviceProvidersList.get(x).getCustomers());
 			}
 		}
 		return output;
@@ -341,9 +354,9 @@ public static User inputUser() { //add user
 	public static ServiceProviders addProvider() {
 		String id = Helper.readString("Enter provider id > ");
 		String name = Helper.readString("Enter provider name > ");
-		double price = Helper.readDouble("Enter price > ");
+		int customer = Helper.readInt("Enter number of customers > ");
 		
-		ServiceProviders sp = new ServiceProviders(id,name,price);
+		ServiceProviders sp = new ServiceProviders(id,name,customer);
 		return sp;
 	}
 	
@@ -467,14 +480,14 @@ public static User inputUser() { //add user
 	
 	//================================= Option 3 Delete an item (CRUD - Update) =================================
 	public static void deleteUser(ArrayList<User> userList, String userInput) {
-	      for (int i = 0; i < userList.size(); i++) {
-	       User deleteUser = userList.get(i);
-	       if (deleteUser.getUsername().equals(userInput)) {
-	         userList.remove(i);
-	        }
-	       }
-	      
-	     }
+	   	 for (int i = 0; i < userList.size(); i++) {
+	   		 User deleteUser = userList.get(i);
+	   		 if (deleteUser.getUsername().equals(userInput)) {
+	   			  userList.remove(i);
+	   		  }
+	   	  }
+	   	 
+	    }
 	
 	public static void deleteService(ArrayList<Service> serviceList, String serviceId) {
 	    // TODO Auto-generated method stub
